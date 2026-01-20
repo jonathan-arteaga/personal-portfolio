@@ -54,8 +54,8 @@
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/jonathan-arteaga/systems-architect.git
-   cd systems-architect
+   git clone https://github.com/jonathan-arteaga/personal-portfolio.git
+   cd personal-portfolio
    ```
 
 2. **Install dependencies**
