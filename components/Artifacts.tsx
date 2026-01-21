@@ -1,215 +1,235 @@
 import React from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+import { ShoppingCart, Store, RefreshCw, List, Building2, Smartphone } from 'lucide-react';
 
 interface ProjectData {
   id: string;
-  category: string;
   title: string;
   description: string;
-  tags: string[];
+  icon: React.ReactNode;
   mockUI: React.ReactNode;
 }
 
-// Mock UI Components for visual placeholders
-const AgentDashboardMock = () => (
-  <div className="w-full h-full bg-[#0f172a] p-3 font-sans text-[10px]">
-    {/* Header */}
-    <div className="flex items-center justify-between mb-3">
-      <div className="flex items-center gap-2">
-        <div className="w-6 h-6 rounded bg-blue-500 flex items-center justify-center">
-          <span className="text-white text-[8px] font-bold">SC</span>
-        </div>
-        <span className="text-white/90 font-medium">Service Console</span>
-      </div>
-      <div className="flex gap-1">
-        <div className="w-2 h-2 rounded-full bg-green-400"></div>
-        <span className="text-green-400 text-[8px]">Live</span>
-      </div>
-    </div>
-    {/* Stats row */}
-    <div className="grid grid-cols-3 gap-2 mb-3">
-      <div className="bg-white/5 rounded p-2">
-        <div className="text-white/50 text-[8px]">Open Cases</div>
-        <div className="text-white font-semibold">24</div>
-      </div>
-      <div className="bg-white/5 rounded p-2">
-        <div className="text-white/50 text-[8px]">Avg Response</div>
-        <div className="text-emerald-400 font-semibold">2.4m</div>
-      </div>
-      <div className="bg-white/5 rounded p-2">
-        <div className="text-white/50 text-[8px]">CSAT</div>
-        <div className="text-white font-semibold">94%</div>
-      </div>
-    </div>
-    {/* Case list */}
-    <div className="space-y-1.5">
-      {[
-        { name: 'Acme Corp', status: 'Urgent', color: 'bg-red-400' },
-        { name: 'TechStart Inc', status: 'Open', color: 'bg-yellow-400' },
-        { name: 'Global Ltd', status: 'Pending', color: 'bg-blue-400' },
-      ].map((item, i) => (
-        <div key={i} className="flex items-center justify-between bg-white/5 rounded px-2 py-1.5">
-          <span className="text-white/80">{item.name}</span>
-          <span className={`${item.color} text-[8px] px-1.5 py-0.5 rounded text-black font-medium`}>
-            {item.status}
-          </span>
-        </div>
-      ))}
-    </div>
-  </div>
-);
+// Mock UI Components - Light gray backgrounds with floating UI elements
 
-const DataPipelineMock = () => (
-  <div className="w-full h-full bg-[#0f172a] p-3 font-sans text-[10px]">
-    {/* Header */}
-    <div className="flex items-center justify-between mb-3">
-      <span className="text-white/90 font-medium">Pipeline Status</span>
-      <span className="text-emerald-400 text-[8px]">● All Systems Go</span>
-    </div>
-    {/* Flow visualization */}
-    <div className="flex items-center justify-between mb-4 px-2">
-      <div className="flex flex-col items-center">
-        <div className="w-8 h-8 rounded bg-blue-500/20 border border-blue-500/50 flex items-center justify-center mb-1">
-          <span className="text-blue-400 text-[8px]">IN</span>
-        </div>
-        <span className="text-white/50 text-[8px]">Source</span>
+const EcommerceMock = () => (
+  <div className="w-full h-full flex items-center justify-center gap-3 p-4">
+    {/* Product Card */}
+    <div className="bg-white rounded-lg shadow-sm p-2 w-24">
+      <div className="w-full h-16 bg-gray-100 rounded mb-2 flex items-center justify-center">
+        <div className="w-8 h-12 bg-gray-300 rounded"></div>
       </div>
-      <div className="flex-1 h-px bg-gradient-to-r from-blue-500 to-emerald-500 mx-2"></div>
-      <div className="flex flex-col items-center">
-        <div className="w-8 h-8 rounded bg-violet-500/20 border border-violet-500/50 flex items-center justify-center mb-1">
-          <span className="text-violet-400 text-[8px]">⚙</span>
-        </div>
-        <span className="text-white/50 text-[8px]">Transform</span>
-      </div>
-      <div className="flex-1 h-px bg-gradient-to-r from-violet-500 to-emerald-500 mx-2"></div>
-      <div className="flex flex-col items-center">
-        <div className="w-8 h-8 rounded bg-emerald-500/20 border border-emerald-500/50 flex items-center justify-center mb-1">
-          <span className="text-emerald-400 text-[8px]">✓</span>
-        </div>
-        <span className="text-white/50 text-[8px]">Output</span>
+      <div className="text-[10px] font-medium text-gray-800">$179.99</div>
+      <div className="flex gap-0.5 mt-1">
+        <div className="w-2 h-2 rounded-full bg-blue-400"></div>
+        <div className="w-2 h-2 rounded-full bg-yellow-400"></div>
+        <div className="w-2 h-2 rounded-full bg-pink-400"></div>
       </div>
     </div>
-    {/* Stats */}
-    <div className="bg-white/5 rounded p-2">
-      <div className="flex justify-between mb-1">
-        <span className="text-white/50">Records processed</span>
-        <span className="text-white font-medium">12,847</span>
+    {/* Shopping Cart Modal */}
+    <div className="bg-white rounded-lg shadow-lg p-3 w-28">
+      <div className="flex items-center justify-between mb-2">
+        <span className="text-[9px] font-medium text-gray-700">Shopping Cart</span>
+        <span className="text-gray-400 text-[10px]">×</span>
       </div>
-      <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
-        <div className="w-4/5 h-full bg-gradient-to-r from-blue-500 to-emerald-500 rounded-full"></div>
+      <div className="w-full h-12 bg-gray-100 rounded mb-2"></div>
+      <div className="bg-gray-900 text-white text-[8px] py-1.5 rounded text-center flex items-center justify-center gap-1">
+        <span></span> Pay
       </div>
     </div>
   </div>
 );
 
-const AIWritingMock = () => (
-  <div className="w-full h-full bg-white p-3 font-sans text-[10px]">
-    {/* Minimal header */}
-    <div className="flex items-center justify-between mb-3 pb-2 border-b border-gray-100">
-      <span className="text-gray-900 font-medium">Draft</span>
-      <div className="flex gap-1">
-        <div className="w-4 h-4 rounded bg-violet-100 flex items-center justify-center">
-          <span className="text-violet-600 text-[8px]">AI</span>
+const MarketplaceMock = () => (
+  <div className="w-full h-full flex items-center justify-center p-4">
+    <div className="bg-white rounded-lg shadow-sm p-3 w-48">
+      <div className="flex items-center gap-2 mb-3">
+        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-orange-200 to-orange-300 border-2 border-white shadow"></div>
+        <div className="flex gap-1">
+          <div className="w-10 h-10 bg-gray-100 rounded flex items-center justify-center">
+            <div className="w-6 h-8 bg-gray-300 rounded-sm"></div>
+          </div>
+          <div className="w-10 h-10 bg-pink-50 rounded flex items-center justify-center">
+            <div className="w-6 h-4 bg-gray-300 rounded-sm"></div>
+          </div>
+          <div className="w-10 h-10 bg-gray-100 rounded flex items-center justify-center relative">
+            <div className="w-4 h-4 bg-gray-300 rounded-full"></div>
+            <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded text-white text-[6px] flex items-center justify-center">↗</div>
+          </div>
+          <div className="w-10 h-10 bg-purple-50 rounded flex items-center justify-center">
+            <div className="w-5 h-5 bg-purple-200 rounded-full"></div>
+          </div>
         </div>
       </div>
-    </div>
-    {/* Text content */}
-    <div className="space-y-2 text-gray-600">
-      <div className="h-2 bg-gray-200 rounded w-full"></div>
-      <div className="h-2 bg-gray-200 rounded w-11/12"></div>
-      <div className="h-2 bg-gray-200 rounded w-4/5"></div>
-    </div>
-    {/* AI suggestion */}
-    <div className="mt-3 p-2 bg-violet-50 border border-violet-200 rounded">
-      <div className="flex items-center gap-1 mb-1">
-        <span className="text-violet-600 text-[8px]">✨ Suggestion</span>
-      </div>
-      <div className="space-y-1">
-        <div className="h-1.5 bg-violet-200 rounded w-full"></div>
-        <div className="h-1.5 bg-violet-200 rounded w-3/4"></div>
-      </div>
-    </div>
-    {/* Action buttons */}
-    <div className="mt-2 flex gap-1">
-      <div className="px-2 py-1 bg-violet-600 rounded text-white text-[8px]">Accept</div>
-      <div className="px-2 py-1 bg-gray-100 rounded text-gray-600 text-[8px]">Dismiss</div>
     </div>
   </div>
 );
 
-const CustomerPortalMock = () => (
-  <div className="w-full h-full bg-white p-3 font-sans text-[10px]">
-    {/* Header */}
-    <div className="flex items-center justify-between mb-3">
-      <span className="text-gray-900 font-medium">Support Portal</span>
-      <div className="w-5 h-5 rounded-full bg-amber-100 flex items-center justify-center">
-        <span className="text-amber-600 text-[8px]">JA</span>
-      </div>
-    </div>
-    {/* Quick actions */}
-    <div className="grid grid-cols-2 gap-2 mb-3">
-      <div className="p-2 bg-gray-50 rounded border border-gray-100 text-center">
-        <div className="text-gray-400 text-[10px] mb-0.5">📄</div>
-        <span className="text-gray-600 text-[8px]">New Ticket</span>
-      </div>
-      <div className="p-2 bg-gray-50 rounded border border-gray-100 text-center">
-        <div className="text-gray-400 text-[10px] mb-0.5">📚</div>
-        <span className="text-gray-600 text-[8px]">Knowledge</span>
-      </div>
-    </div>
-    {/* Recent tickets */}
-    <div className="text-[8px] text-gray-400 mb-1">Recent Tickets</div>
-    <div className="space-y-1">
-      {[
-        { title: 'API Integration', status: 'Resolved', color: 'text-emerald-600 bg-emerald-50' },
-        { title: 'Billing Question', status: 'Open', color: 'text-amber-600 bg-amber-50' },
-      ].map((item, i) => (
-        <div key={i} className="flex items-center justify-between p-1.5 bg-gray-50 rounded">
-          <span className="text-gray-700">{item.title}</span>
-          <span className={`${item.color} text-[7px] px-1 py-0.5 rounded`}>{item.status}</span>
+const SubscriptionMock = () => (
+  <div className="w-full h-full flex items-center justify-center p-4">
+    <div className="bg-white rounded-lg shadow-sm p-3 w-40">
+      <div className="space-y-2">
+        <div className="flex items-center justify-between bg-gray-50 rounded p-2">
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 bg-gray-200 rounded text-[8px] flex items-center justify-center text-gray-500">18</div>
+            <div className="flex items-center gap-1">
+              <div className="text-[8px] text-blue-600 font-medium">VISA</div>
+              <span className="text-[8px] text-gray-400">****4242</span>
+            </div>
+          </div>
+          <span className="text-[9px] font-medium text-gray-700">$7.99</span>
         </div>
-      ))}
+        <div className="flex items-center justify-between bg-gray-50 rounded p-2">
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 bg-gray-200 rounded text-[8px] flex items-center justify-center text-gray-500">18</div>
+            <div className="flex items-center gap-1">
+              <div className="text-[8px] text-blue-600 font-medium">VISA</div>
+              <span className="text-[8px] text-gray-400">****4242</span>
+            </div>
+          </div>
+          <span className="text-[9px] font-medium text-gray-700">$7.99</span>
+        </div>
+      </div>
     </div>
   </div>
 );
 
-// Sales demos - conceptual LWC tools for customer conversations
-const salesDemos: ProjectData[] = [
+const OrderManagementMock = () => (
+  <div className="w-full h-full flex items-center justify-center p-4">
+    <div className="bg-white rounded-lg shadow-sm p-3 w-44">
+      <div className="text-[9px] text-gray-500 mb-2">Total Sales</div>
+      {/* Chart area */}
+      <div className="h-12 flex items-end gap-1 mb-3">
+        <svg className="w-full h-full" viewBox="0 0 120 40">
+          <path
+            d="M0 35 Q20 30 40 28 T80 20 T120 15"
+            fill="none"
+            stroke="#3B82F6"
+            strokeWidth="2"
+          />
+          <circle cx="80" cy="20" r="3" fill="#3B82F6" />
+        </svg>
+      </div>
+      {/* Order rows */}
+      <div className="space-y-1.5">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 rounded-full bg-blue-500 flex items-center justify-center">
+              <span className="text-white text-[6px]">✓</span>
+            </div>
+            <div className="w-12 h-1.5 bg-gray-200 rounded"></div>
+          </div>
+          <span className="text-[8px] text-green-600 bg-green-50 px-1.5 py-0.5 rounded">✓ Paid</span>
+        </div>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 rounded-full bg-gray-200"></div>
+            <div className="w-10 h-1.5 bg-gray-200 rounded"></div>
+          </div>
+          <span className="text-[8px] text-yellow-600 bg-yellow-50 px-1.5 py-0.5 rounded">○ Unfulfilled</span>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+const B2BStoreMock = () => (
+  <div className="w-full h-full flex items-center justify-center p-4">
+    <div className="bg-white rounded-lg shadow-sm p-3 w-44 relative">
+      {/* Browser dots */}
+      <div className="flex gap-1 mb-2">
+        <div className="w-1.5 h-1.5 rounded-full bg-red-400"></div>
+        <div className="w-1.5 h-1.5 rounded-full bg-yellow-400"></div>
+        <div className="w-1.5 h-1.5 rounded-full bg-green-400"></div>
+      </div>
+      {/* Navigation */}
+      <div className="flex items-center gap-2 mb-3 bg-gray-50 rounded p-1.5">
+        <div className="w-4 h-4 bg-gray-200 rounded"></div>
+        <div className="flex gap-1">
+          <div className="w-1.5 h-1.5 rounded-full bg-gray-300"></div>
+          <div className="w-1.5 h-1.5 rounded-full bg-gray-400"></div>
+          <div className="w-1.5 h-1.5 rounded-full bg-gray-300"></div>
+        </div>
+      </div>
+      {/* Person silhouette */}
+      <div className="flex items-center justify-center">
+        <div className="w-16 h-20 bg-gradient-to-b from-blue-100 to-blue-50 rounded-lg flex items-center justify-center">
+          <div className="w-8 h-12 bg-blue-200/50 rounded"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+const POSMock = () => (
+  <div className="w-full h-full flex items-center justify-center gap-3 p-4">
+    {/* Phone/Terminal */}
+    <div className="bg-gray-800 rounded-2xl p-2 w-20 shadow-lg">
+      <div className="bg-white rounded-xl p-2 h-24 flex flex-col items-center justify-center">
+        <div className="w-6 h-6 border-2 border-gray-300 rounded-lg mb-1 flex items-center justify-center">
+          <div className="text-[8px] text-gray-400">⟨⟩</div>
+        </div>
+        <div className="text-[8px] text-gray-500">Tap to pay</div>
+        <div className="text-[10px] font-semibold text-gray-800 mt-1">$29.99</div>
+      </div>
+    </div>
+    {/* Credit Card */}
+    <div className="bg-white rounded-lg shadow-sm p-2 w-24 h-16 relative">
+      <div className="absolute top-2 right-2 flex items-center gap-0.5">
+        <div className="text-[6px] text-gray-400">****</div>
+        <div className="text-[8px] text-gray-600 font-mono">1024</div>
+      </div>
+      <div className="absolute bottom-2 right-2 flex gap-0.5">
+        <div className="w-4 h-4 rounded-full bg-red-500 opacity-80"></div>
+        <div className="w-4 h-4 rounded-full bg-yellow-500 opacity-80 -ml-2"></div>
+      </div>
+    </div>
+  </div>
+);
+
+// Project data matching the screenshot structure
+const projects: ProjectData[] = [
   {
     id: '001',
-    category: 'Salesforce LWC',
-    title: 'Agent Dashboard',
-    description: 'Unified agent context to reduce training friction.',
-    tags: ['LWC', 'Apex', 'Service Cloud'],
-    mockUI: <AgentDashboardMock />,
+    title: 'Ecommerce',
+    description: 'Build a multi-region and multi-channel store with endless customizations.',
+    icon: <ShoppingCart className="w-5 h-5" />,
+    mockUI: <EcommerceMock />,
   },
   {
     id: '002',
-    category: 'Integration',
-    title: 'Data Pipeline',
-    description: 'Automation concept for data reconciliation workflows.',
-    tags: ['Node.js', 'PostgreSQL', 'Lambda'],
-    mockUI: <DataPipelineMock />,
+    title: 'Marketplace',
+    description: 'Set up a marketplace with multiple vendors.',
+    icon: <Store className="w-5 h-5" />,
+    mockUI: <MarketplaceMock />,
   },
-];
-
-// Concepts - ideas seeking a collaborator
-const concepts: ProjectData[] = [
   {
     id: '003',
-    category: 'Co-builder wanted',
-    title: 'AI Writing App',
-    description: 'Minimalist editor with AI suggestions.',
-    tags: ['Next.js', 'OpenAI'],
-    mockUI: <AIWritingMock />,
+    title: 'Subscription Business',
+    description: 'Handle subscription-based orders and set up custom renewal logic.',
+    icon: <RefreshCw className="w-5 h-5" />,
+    mockUI: <SubscriptionMock />,
   },
   {
     id: '004',
-    category: 'Collaboration',
-    title: 'Customer Portal',
-    description: 'Self-service to reduce support friction.',
-    tags: ['React', 'Figma'],
-    mockUI: <CustomerPortalMock />,
+    title: 'Order Management System',
+    description: 'Handle orders from multiple channels and route to your fulfillment services.',
+    icon: <List className="w-5 h-5" />,
+    mockUI: <OrderManagementMock />,
+  },
+  {
+    id: '005',
+    title: 'B2B Store',
+    description: 'Set unique price lists, discounts, and product access for B2B customers.',
+    icon: <Building2 className="w-5 h-5" />,
+    mockUI: <B2BStoreMock />,
+  },
+  {
+    id: '006',
+    title: 'Point of Sales (POS)',
+    description: 'Support POS systems and in-store purchases.',
+    icon: <Smartphone className="w-5 h-5" />,
+    mockUI: <POSMock />,
   },
 ];
 
@@ -220,12 +240,12 @@ export const Artifacts: React.FC = () => {
     <section
       id="projects"
       ref={sectionRef}
-      className="w-full py-16 md:py-24 px-6 md:px-12 border-t border-border"
+      className="w-full py-16 md:py-24 px-6 md:px-12"
     >
       <div className="max-w-6xl mx-auto">
-        {/* Section Header - Compact */}
+        {/* Section Header */}
         <div
-          className={`flex items-baseline gap-4 mb-8 transition-all duration-700 ${
+          className={`flex items-baseline gap-4 mb-10 transition-all duration-700 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
           }`}
         >
@@ -237,49 +257,16 @@ export const Artifacts: React.FC = () => {
           </span>
         </div>
 
-        {/* Bento Grid - 2 rows of 2 on desktop, stacked on mobile */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* Sales Demos */}
-          {salesDemos.map((project, index) => (
+        {/* 3-Column Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((project, index) => (
             <ProjectCard
               key={project.id}
               project={project}
               index={index}
               isVisible={isVisible}
-              type="demo"
             />
           ))}
-
-          {/* Concepts */}
-          {concepts.map((project, index) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-              index={index + salesDemos.length}
-              isVisible={isVisible}
-              type="concept"
-            />
-          ))}
-        </div>
-
-        {/* Subtle legend */}
-        <div
-          className={`flex items-center gap-6 mt-6 transition-all duration-700 delay-500 ${
-            isVisible ? 'opacity-100' : 'opacity-0'
-          }`}
-        >
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-foreground"></div>
-            <span className="font-mono text-[10px] text-muted uppercase tracking-wider">
-              Sales Demos
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 border border-foreground"></div>
-            <span className="font-mono text-[10px] text-muted uppercase tracking-wider">
-              Concepts
-            </span>
-          </div>
         </div>
       </div>
     </section>
@@ -287,69 +274,41 @@ export const Artifacts: React.FC = () => {
 };
 
 /* ================================
-   PROJECT CARD WITH MOCK UI
+   PROJECT CARD - Matching screenshot design
    ================================ */
 interface CardProps {
   project: ProjectData;
   index: number;
   isVisible: boolean;
-  type: 'demo' | 'concept';
 }
 
-const ProjectCard: React.FC<CardProps> = ({ project, index, isVisible, type }) => {
-  const isDemo = type === 'demo';
-
+const ProjectCard: React.FC<CardProps> = ({ project, index, isVisible }) => {
   return (
     <div
-      className={`group relative border transition-all duration-500 hover:border-foreground overflow-hidden ${
-        isDemo
-          ? 'bg-surface border-border'
-          : 'bg-background border-dashed border-border hover:border-solid'
-      } ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+      className={`group bg-surface-alt rounded-2xl overflow-hidden transition-all duration-500 hover:shadow-lg ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+      }`}
       style={{ transitionDelay: `${100 + index * 75}ms` }}
     >
-      {/* Type indicator bar */}
-      <div
-        className={`absolute top-0 left-6 w-8 h-0.5 ${
-          isDemo ? 'bg-foreground' : 'bg-transparent border-t border-foreground'
-        }`}
-      ></div>
-
-      {/* Mock UI Screenshot */}
-      <div className="relative h-40 overflow-hidden border-b border-border">
+      {/* Preview Area - Large with light gray background */}
+      <div className="relative h-48 bg-[#f0f0f0] dark:bg-[#1a1a1a] overflow-hidden">
         {project.mockUI}
-        {/* Subtle overlay on hover */}
-        <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/5 transition-colors"></div>
       </div>
 
-      {/* Content */}
-      <div className="p-4">
-        {/* Category */}
-        <span className="font-mono text-[9px] text-muted uppercase tracking-widest">
-          {project.category}
-        </span>
-
-        {/* Title */}
-        <h3 className="font-sans text-base font-semibold text-foreground mt-1 mb-1 group-hover:text-accent transition-colors">
-          {project.title}
-        </h3>
+      {/* Content Area */}
+      <div className="p-5 bg-surface-alt">
+        {/* Icon + Title */}
+        <div className="flex items-center gap-3 mb-2">
+          <span className="text-foreground/70">{project.icon}</span>
+          <h3 className="font-sans text-base font-semibold text-foreground">
+            {project.title}
+          </h3>
+        </div>
 
         {/* Description */}
-        <p className="font-sans text-sm text-muted leading-relaxed mb-3">
+        <p className="font-sans text-sm text-muted leading-relaxed">
           {project.description}
         </p>
-
-        {/* Tags */}
-        <div className="flex flex-wrap gap-2">
-          {project.tags.map((tag, i) => (
-            <span
-              key={i}
-              className="font-mono text-[9px] text-muted/80 uppercase tracking-wider border border-border px-2 py-0.5"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
       </div>
     </div>
   );
