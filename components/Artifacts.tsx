@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
-import { ShoppingCart, Store, RefreshCw, List, Building2, Smartphone } from 'lucide-react';
+import { ShoppingCart, Store, RefreshCw, List, Building2, Smartphone, Cloud, Globe, Lightbulb } from 'lucide-react';
+
+// Tab categories
+type TabCategory = 'salesforce' | 'websites' | 'prototypes';
+
+interface Tab {
+  id: TabCategory;
+  label: string;
+  icon: React.ReactNode;
+}
+
+const tabs: Tab[] = [
+  { id: 'salesforce', label: 'Salesforce', icon: <Cloud className="w-4 h-4" /> },
+  { id: 'websites', label: 'Websites', icon: <Globe className="w-4 h-4" /> },
+  { id: 'prototypes', label: 'Prototypes', icon: <Lightbulb className="w-4 h-4" /> },
+];
 
 interface ProjectData {
   id: string;
+  category: TabCategory;
   title: string;
   description: string;
   icon: React.ReactNode;
@@ -187,46 +203,55 @@ const POSMock = () => (
   </div>
 );
 
-// Project data matching the screenshot structure
+// Project data organized by category
 const projects: ProjectData[] = [
+  // Salesforce projects
   {
-    id: '001',
-    title: 'Ecommerce',
+    id: 'sf-001',
+    category: 'salesforce',
+    title: 'Agent Dashboard',
+    description: 'Unified agent context to reduce training friction.',
+    icon: <List className="w-5 h-5" />,
+    mockUI: <OrderManagementMock />,
+  },
+  {
+    id: 'sf-002',
+    category: 'salesforce',
+    title: 'Service Console',
+    description: 'Custom console app for streamlined case management.',
+    icon: <Building2 className="w-5 h-5" />,
+    mockUI: <B2BStoreMock />,
+  },
+  // Websites projects
+  {
+    id: 'web-001',
+    category: 'websites',
+    title: 'Ecommerce Store',
     description: 'Build a multi-region and multi-channel store with endless customizations.',
     icon: <ShoppingCart className="w-5 h-5" />,
     mockUI: <EcommerceMock />,
   },
   {
-    id: '002',
+    id: 'web-002',
+    category: 'websites',
     title: 'Marketplace',
     description: 'Set up a marketplace with multiple vendors.',
     icon: <Store className="w-5 h-5" />,
     mockUI: <MarketplaceMock />,
   },
+  // Prototypes/Ideas
   {
-    id: '003',
-    title: 'Subscription Business',
+    id: 'proto-001',
+    category: 'prototypes',
+    title: 'Subscription Manager',
     description: 'Handle subscription-based orders and set up custom renewal logic.',
     icon: <RefreshCw className="w-5 h-5" />,
     mockUI: <SubscriptionMock />,
   },
   {
-    id: '004',
-    title: 'Order Management System',
-    description: 'Handle orders from multiple channels and route to your fulfillment services.',
-    icon: <List className="w-5 h-5" />,
-    mockUI: <OrderManagementMock />,
-  },
-  {
-    id: '005',
-    title: 'B2B Store',
-    description: 'Set unique price lists, discounts, and product access for B2B customers.',
-    icon: <Building2 className="w-5 h-5" />,
-    mockUI: <B2BStoreMock />,
-  },
-  {
-    id: '006',
-    title: 'Point of Sales (POS)',
+    id: 'proto-002',
+    category: 'prototypes',
+    title: 'Mobile POS',
     description: 'Support POS systems and in-store purchases.',
     icon: <Smartphone className="w-5 h-5" />,
     mockUI: <POSMock />,
@@ -235,6 +260,9 @@ const projects: ProjectData[] = [
 
 export const Artifacts: React.FC = () => {
   const { ref: sectionRef, isVisible } = useIntersectionObserver<HTMLElement>();
+  const [activeTab, setActiveTab] = useState<TabCategory>('salesforce');
+
+  const filteredProjects = projects.filter((project) => project.category === activeTab);
 
   return (
     <section
@@ -245,7 +273,7 @@ export const Artifacts: React.FC = () => {
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <div
-          className={`flex items-baseline gap-4 mb-10 transition-all duration-700 ${
+          className={`flex items-baseline gap-4 mb-8 transition-all duration-700 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
           }`}
         >
@@ -257,9 +285,31 @@ export const Artifacts: React.FC = () => {
           </span>
         </div>
 
+        {/* Tab Bar */}
+        <div
+          className={`flex flex-wrap gap-2 mb-8 transition-all duration-700 delay-100 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+          }`}
+        >
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-full font-sans text-sm font-medium transition-all duration-300 ${
+                activeTab === tab.id
+                  ? 'bg-foreground text-background'
+                  : 'bg-surface-alt text-muted hover:text-foreground hover:bg-surface'
+              }`}
+            >
+              {tab.icon}
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
         {/* 3-Column Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, index) => (
+          {filteredProjects.map((project, index) => (
             <ProjectCard
               key={project.id}
               project={project}
@@ -288,7 +338,7 @@ const ProjectCard: React.FC<CardProps> = ({ project, index, isVisible }) => {
       className={`group bg-surface-alt rounded-2xl overflow-hidden transition-all duration-500 hover:shadow-lg ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
       }`}
-      style={{ transitionDelay: `${100 + index * 75}ms` }}
+      style={{ transitionDelay: `${200 + index * 75}ms` }}
     >
       {/* Preview Area - Large with light gray background */}
       <div className="relative h-48 bg-[#f0f0f0] dark:bg-[#1a1a1a] overflow-hidden">
