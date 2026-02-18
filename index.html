@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jonathan Arteaga | Systems Architect</title>
+    <link rel="icon" type="image/webp" href="/images/headshot.webp" />
+    <link rel="apple-touch-icon" href="/images/headshot.webp" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              background: '#FFFFFF',
+              surface: '#FAFAFA',
+              'surface-alt': '#F5F5F0',
+              foreground: '#1A1A1A',
+              muted: '#737373',
+              border: '#E5E5E5',
+              accent: '#c69233',
+              'accent-dark': '#a67a2a',
+            },
+            fontFamily: {
+              sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+              serif: ['"Hedvig Letters Serif"', 'Georgia', 'serif'],
+              mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
+            },
+            fontSize: {
+              'fluid-xs': 'clamp(0.75rem, 1.5vw, 0.875rem)',
+              'fluid-sm': 'clamp(0.875rem, 2vw, 1rem)',
+              'fluid-base': 'clamp(1rem, 2vw, 1.125rem)',
+              'fluid-lg': 'clamp(1.125rem, 2.5vw, 1.25rem)',
+              'fluid-xl': 'clamp(1.25rem, 3vw, 1.5rem)',
+              'fluid-2xl': 'clamp(1.5rem, 4vw, 2rem)',
+              'fluid-3xl': 'clamp(1.875rem, 5vw, 3rem)',
+              'fluid-4xl': 'clamp(2.25rem, 6vw, 3.75rem)',
+              'fluid-5xl': 'clamp(3rem, 8vw, 6rem)',
+            },
+            animation: {
+              'fade-in': 'fadeIn 0.6s ease-out forwards',
+              'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
+              'draw': 'draw 2s ease-out forwards',
+              'typing': 'typing 2s steps(20) forwards',
+              'blink': 'blink 1s step-end infinite',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              typing: {
+                '0%': { width: '0' },
+                '100%': { width: '100%' },
+              },
+              blink: {
+                '0%, 100%': { borderColor: 'transparent' },
+                '50%': { borderColor: '#1A1A1A' },
+              },
+            }
+          },
+        },
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+      /* ===== CSS VARIABLES FOR THEMING ===== */
+      :root {
+        --background: #FFFFFF;
+        --surface: #FAFAFA;
+        --surface-alt: #F5F5F0;
+        --foreground: #1A1A1A;
+        --muted: #737373;
+        --border: #E5E5E5;
+        --accent: #c69233;
+        --accent-dark: #a67a2a;
+      }
+
+      html.dark {
+        --background: #0A0A0A;
+        --surface: #141414;
+        --surface-alt: #1A1A18;
+        --foreground: #FAFAFA;
+        --muted: #A1A1A1;
+        --border: #2A2A2A;
+        --accent: #c69233;
+        --accent-dark: #a67a2a;
+      }
+
+      body {
+        background-color: var(--background);
+        color: var(--foreground);
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      html {
+        scroll-padding-top: 5rem;
+        scroll-behavior: smooth;
+      }
+
+      /* Lenis smooth scroll: when active, use native scroll for programmatic jumps and avoid double-smoothing */
+      html.lenis {
+        scroll-behavior: auto;
+      }
+      html.lenis,
+      html.lenis body {
+        height: auto;
+      }
+      .lenis.lenis-smooth iframe {
+        pointer-events: none;
+      }
+
+      /* Dark mode overrides for Tailwind classes */
+      html.dark .bg-white { background-color: var(--surface) !important; }
+      html.dark .bg-background { background-color: var(--background) !important; }
+      html.dark .bg-surface { background-color: var(--surface) !important; }
+      html.dark .text-foreground { color: var(--foreground) !important; }
+      html.dark .text-muted { color: var(--muted) !important; }
+      html.dark .text-background { color: var(--background) !important; }
+      html.dark .border-border { border-color: var(--border) !important; }
+      html.dark .bg-foreground { background-color: var(--foreground) !important; }
+      html.dark .bg-white\/90 { background-color: rgba(10, 10, 10, 0.9) !important; }
+      html.dark .bg-background\/90 { background-color: rgba(10, 10, 10, 0.9) !important; }
+
+      /* Dark mode card backgrounds */
+      html.dark .bg-accent\/30 { background-color: rgba(198, 146, 51, 0.15) !important; }
+      html.dark .hover\:bg-accent\/50:hover { background-color: rgba(198, 146, 51, 0.25) !important; }
+      html.dark .bg-surface-alt { background-color: var(--surface-alt) !important; }
+
+      /* Noise Texture Overlay */
+      .noise-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 50;
+        opacity: 0.05;
+        mix-blend-mode: multiply;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.5'/%3E%3C/svg%3E");
+      }
+
+      /* Custom Scrollbar - Minimal Grey */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #D4D4D4;
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #A3A3A3;
+      }
+
+      /* Tech card styles */
+      .tech-card {
+        background: #FFFFFF;
+        border: 1px solid #E5E5E5;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        transition: all 0.2s ease;
+      }
+
+      .tech-card:hover {
+        border-color: #A3A3A3;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      }
+
+      /* Scroll reveal animation */
+      .scroll-reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+
+      .scroll-reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        .scroll-reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+        * {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      /* Accent hover states */
+      .accent-hover {
+        transition: background-color 0.2s ease;
+      }
+      .accent-hover:hover {
+        background-color: #c69233;
+      }
+
+      /* Link underline animation */
+      .link-underline {
+        position: relative;
+      }
+      .link-underline::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background-color: #1A1A1A;
+        transition: width 0.3s ease;
+      }
+      .link-underline:hover::after {
+        width: 100%;
+      }
+
+      /* Progress bar */
+      .progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 3px;
+        background-color: #c69233;
+        z-index: 100;
+        transition: width 0.1s ease-out;
+      }
+
+      /* ===== MICRO-INTERACTIONS ===== */
+
+      /* Button press effect */
+      .btn-press {
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+      .btn-press:active {
+        transform: scale(0.97);
+      }
+
+      /* Icon bounce on hover */
+      .icon-bounce:hover svg,
+      .icon-bounce:hover img {
+        animation: iconBounce 0.4s ease;
+      }
+      @keyframes iconBounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-3px); }
+      }
+
+      /* Card lift effect */
+      .card-lift {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .card-lift:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Ripple effect for buttons */
+      .ripple {
+        position: relative;
+        overflow: hidden;
+      }
+      .ripple::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.4s ease, height 0.4s ease;
+      }
+      .ripple:active::after {
+        width: 200%;
+        height: 200%;
+      }
+
+      /* Glow effect on hover */
+      .glow-hover {
+        transition: box-shadow 0.3s ease;
+      }
+      .glow-hover:hover {
+        box-shadow: 0 0 20px rgba(198, 146, 51, 0.5);
+      }
+
+      /* Text shimmer effect */
+      .text-shimmer {
+        background: linear-gradient(
+          90deg,
+          #1A1A1A 0%,
+          #737373 50%,
+          #1A1A1A 100%
+        );
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .text-shimmer:hover {
+        animation: shimmer 2s linear infinite;
+      }
+      @keyframes shimmer {
+        to { background-position: 200% center; }
+      }
+
+      /* Stagger children animation */
+      .stagger-children > * {
+        opacity: 0;
+        transform: translateY(10px);
+        animation: staggerIn 0.5s ease forwards;
+      }
+      .stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
+      .stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
+      .stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
+      .stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
+      .stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
+      .stagger-children > *:nth-child(6) { animation-delay: 0.6s; }
+      .stagger-children > *:nth-child(7) { animation-delay: 0.7s; }
+      @keyframes staggerIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Border draw animation */
+      .border-draw {
+        position: relative;
+      }
+      .border-draw::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border: 2px solid transparent;
+        transition: border-color 0.3s ease;
+      }
+      .border-draw:hover::before {
+        border-color: #1A1A1A;
+        animation: borderDraw 0.5s ease forwards;
+      }
+      @keyframes borderDraw {
+        0% { clip-path: polygon(0 0, 0 0, 0 0, 0 0); }
+        25% { clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); }
+        50% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+        75% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+        100% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+      }
+
+      /* Scale icon on parent hover */
+      .group:hover .group-hover-scale {
+        transform: scale(1.1);
+        transition: transform 0.3s ease;
+      }
+
+      /* ===== SCROLL ANIMATIONS ===== */
+
+      /* Text reveal from bottom */
+      .text-reveal {
+        overflow: hidden;
+      }
+      .text-reveal > * {
+        transform: translateY(100%);
+        opacity: 0;
+        transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+      }
+      .text-reveal.visible > * {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      /* Word-by-word reveal */
+      .words-reveal .word {
+        display: inline-block;
+        overflow: hidden;
+        margin-right: 0.25em;
+      }
+      .words-reveal .word > span {
+        display: inline-block;
+        transform: translateY(100%);
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .words-reveal.visible .word > span {
+        transform: translateY(0);
+      }
+      .words-reveal .word:nth-child(1) > span { transition-delay: 0s; }
+      .words-reveal .word:nth-child(2) > span { transition-delay: 0.05s; }
+      .words-reveal .word:nth-child(3) > span { transition-delay: 0.1s; }
+      .words-reveal .word:nth-child(4) > span { transition-delay: 0.15s; }
+      .words-reveal .word:nth-child(5) > span { transition-delay: 0.2s; }
+      .words-reveal .word:nth-child(6) > span { transition-delay: 0.25s; }
+      .words-reveal .word:nth-child(7) > span { transition-delay: 0.3s; }
+      .words-reveal .word:nth-child(8) > span { transition-delay: 0.35s; }
+
+      /* Parallax effect */
+      .parallax-slow {
+        will-change: transform;
+        transition: transform 0.1s linear;
+      }
+
+      /* Scale up on scroll */
+      .scale-on-scroll {
+        transform: scale(0.95);
+        opacity: 0.5;
+        transition: transform 0.6s ease, opacity 0.6s ease;
+      }
+      .scale-on-scroll.visible {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      /* Slide from left/right */
+      .slide-from-left {
+        transform: translateX(-50px);
+        opacity: 0;
+        transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+      }
+      .slide-from-left.visible {
+        transform: translateX(0);
+        opacity: 1;
+      }
+
+      .slide-from-right {
+        transform: translateX(50px);
+        opacity: 0;
+        transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+      }
+      .slide-from-right.visible {
+        transform: translateX(0);
+        opacity: 1;
+      }
+
+      /* Blur reveal */
+      .blur-reveal {
+        filter: blur(10px);
+        opacity: 0;
+        transition: filter 0.8s ease, opacity 0.8s ease;
+      }
+      .blur-reveal.visible {
+        filter: blur(0);
+        opacity: 1;
+      }
+
+      /* Counter animation (for numbers) */
+      .counter-animate {
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* Clip path reveal */
+      .clip-reveal {
+        clip-path: inset(100% 0 0 0);
+        transition: clip-path 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .clip-reveal.visible {
+        clip-path: inset(0 0 0 0);
+      }
+
+      /* Line draw animation */
+      .line-draw {
+        width: 0;
+        transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .line-draw.visible {
+        width: 100%;
+      }
+
+    </style>
+    <script type="importmap">
+    {
+      "imports": {
+        "react/": "https://esm.sh/react@^19.2.3/",
+        "react": "https://esm.sh/react@^19.2.3",
+        "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+        "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+      }
+    }
+    </script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+    <div class="noise-overlay"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
