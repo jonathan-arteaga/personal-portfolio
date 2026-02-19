@@ -6,7 +6,6 @@ interface TimelineNode {
   role: string;
   period: string;
   description?: string;
-  details?: string[];
   isCurrent?: boolean;
 }
 
@@ -17,11 +16,6 @@ const timelineData: TimelineNode[] = [
     period: '2019 — Present',
     isCurrent: true,
     description: 'Promoted 3x in 5 years. I lead technical strategy for complex deals and build the demos that get executives to say yes.',
-    details: [
-      'Lead SE (2024 — Present)',
-      'Senior SE (2021 — 2024)',
-      'SE (2019 — 2021)',
-    ],
   },
   {
     company: 'Enterprise Admin',
@@ -88,7 +82,7 @@ export const BentoGrid: React.FC = () => {
             }`}
           >
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-1.5 h-1.5 bg-foreground"></div>
+              <div className="w-2 h-2 bg-foreground"></div>
               <span className="type-label text-muted">
                 The Journey
               </span>
@@ -98,7 +92,7 @@ export const BentoGrid: React.FC = () => {
               {/* Vertical Line */}
               <div className="absolute left-[5px] top-2 bottom-2 w-px bg-border"></div>
 
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {timelineData.map((node, index) => (
                   <div key={index} className="relative">
                     {/* Node dot */}
@@ -108,31 +102,16 @@ export const BentoGrid: React.FC = () => {
                           ? 'bg-foreground border-foreground'
                           : 'bg-surface border-border'
                       }`}
-                    ></div>
+                    />
 
                     <div className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5">
                       <h4 className="type-title text-foreground">
                         {node.company}
                       </h4>
-                      {node.isCurrent && (
-                        <span className="inline-flex items-center gap-1 type-tag font-semibold px-1.5 py-0.5 interactive-accent-primary">
-                          <span className="w-1 h-1 bg-accent-dark rounded-full animate-pulse"></span>
-                          Live
-                        </span>
-                      )}
                     </div>
                     <p className="type-tag text-muted">
                       {node.role} · {node.period}
                     </p>
-                    {node.details && (
-                      <div className="mt-1 flex flex-wrap gap-x-3 gap-y-0.5">
-                        {node.details.map((detail, i) => (
-                          <span key={i} className="type-body-sm text-muted">
-                            {detail}
-                          </span>
-                        ))}
-                      </div>
-                    )}
                   </div>
                 ))}
               </div>

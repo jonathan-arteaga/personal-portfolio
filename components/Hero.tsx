@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { GradientBackground } from './GradientBackground';
 import { useTheme } from '../contexts/ThemeContext';
 import { GITHUB_URL, LINKEDIN_URL } from '../config/site';
@@ -61,7 +61,6 @@ const techTags = [
 
 export const Hero: React.FC = () => {
   const { theme } = useTheme();
-  const [isTechMarqueePlaying, setIsTechMarqueePlaying] = useState(false);
 
   return (
     <section id="hero" className="relative min-h-[82svh] lg:min-h-[86svh] flex items-center overflow-hidden surface-tier-0 section-shell">
@@ -69,7 +68,7 @@ export const Hero: React.FC = () => {
       <GradientBackground />
 
       {/* Content */}
-      <div className="relative z-10 content-shell-wide">
+      <div className="relative z-10 content-shell-wide pb-20 lg:pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center min-h-[58vh] lg:min-h-[62vh]">
 
           {/* Left Column — Text */}
@@ -148,17 +147,7 @@ export const Hero: React.FC = () => {
               className="opacity-0 animate-fade-in"
               style={{ animationDelay: CONTENT_DELAY, animationFillMode: 'forwards' }}
             >
-              <div className="flex items-center justify-between gap-3 mb-3">
-                <span className="type-label text-muted">Tools in rotation</span>
-                <button
-                  type="button"
-                  onClick={() => { setIsTechMarqueePlaying((prev) => !prev); }}
-                  aria-pressed={isTechMarqueePlaying}
-                  className="focus-ring type-label text-muted hover:text-foreground transition-colors px-2 py-1 border border-border hover:border-foreground"
-                >
-                  {isTechMarqueePlaying ? 'Pause tags' : 'Play tags'}
-                </button>
-              </div>
+              <span className="type-label text-muted block mb-3">Tools in rotation</span>
               <div className="relative overflow-hidden">
                 {/* Fade edges */}
                 <div
@@ -170,26 +159,17 @@ export const Hero: React.FC = () => {
                   style={{ background: 'linear-gradient(to left, var(--background), transparent)' }}
                 />
                 <div
-                  className={`tech-marquee-track${isTechMarqueePlaying ? ' is-playing' : ''}`}
+                  className="tech-marquee-track is-playing"
                 >
-                  {[...techTags, ...techTags].map((tag, i) => {
-                    const accentClass =
-                      i % 5 === 0
-                        ? 'interactive-accent-primary'
-                        : i % 5 === 3
-                          ? 'interactive-accent-secondary'
-                          : 'surface-tier-1 border border-border';
-
-                    return (
+                  {[...techTags, ...techTags].map((tag, i) => (
                       <span
                         key={i}
-                        className={`inline-flex items-center gap-2 type-tag px-3 py-1.5 flex-shrink-0 whitespace-nowrap ${accentClass}`}
+                        className="inline-flex items-center gap-2 type-tag px-3 py-1.5 flex-shrink-0 whitespace-nowrap surface-tier-1 border border-border"
                       >
                         {tag.icon}
                         {tag.name}
                       </span>
-                    );
-                  })}
+                    ))}
                 </div>
               </div>
             </div>

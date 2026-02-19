@@ -121,11 +121,11 @@ export const Interests: React.FC = () => {
 
           {/* Card 3: Vibe Coding */}
           <div
-            className={`card-lift interactive-accent-secondary p-5 md:p-6 transition-all duration-700 delay-250 ${
+            className={`card-lift bg-surface border border-border p-5 md:p-6 transition-all duration-700 delay-250 hover:border-foreground ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
             }`}
           >
-            <div className="w-10 h-10 flex items-center justify-center bg-foreground text-background mb-4">
+            <div className="w-10 h-10 flex items-center justify-center interactive-accent-secondary mb-4">
               {interests[2].icon}
             </div>
             <h3 className="type-title text-foreground mb-1">
