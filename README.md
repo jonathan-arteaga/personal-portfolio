@@ -1,115 +1,65 @@
-<div align="center">
+# Jonathan Arteaga Portfolio
 
-# Jonathan Arteaga | Systems Architect
+Personal portfolio site built with React, TypeScript, Vite, and Tailwind CSS.
 
-**A modern, editorial portfolio showcasing systems design, workflow automation, and 18 years of sales engineering expertise.**
+## Tech Stack
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-c69233?style=for-the-badge)](https://ai.studio/apps/drive/1Y5bopPudkjxz2dSNS5etMdJKLE3PRG0v)
-[![Built with Vite](https://img.shields.io/badge/Built%20with-Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS
+- Lenis
+- Lucide React
 
-</div>
+## Local Development
 
----
+1. Install dependencies:
 
-## 📸 Preview
-
-<div align="center">
-  <img src="./public/images/screenshot.png" alt="Portfolio Screenshot" width="800" />
-</div>
-
----
-
-## ✨ Features
-
-- **Smooth Scroll Experience** — Powered by Lenis for buttery-smooth scrolling animations
-- **Dark/Light Theme** — Elegant theme switching with system preference detection
-- **Responsive Design** — Fluid typography and layouts that adapt to any screen size
-- **Modern Animations** — Scroll-triggered reveals, particle backgrounds, and micro-interactions
-- **Editorial Aesthetic** — High-end design inspired by premium editorial websites
-
----
-
-## 🛠️ Tech Stack
-
-| Technology | Purpose |
-|------------|---------|
-| **React 19** | UI framework |
-| **TypeScript** | Type safety |
-| **Vite** | Build tool & dev server |
-| **Tailwind CSS** | Utility-first styling |
-| **Lenis** | Smooth scrolling |
-| **Lucide React** | Icon library |
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) (v18 or higher recommended)
-- npm or yarn
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/jonathan-arteaga/personal-portfolio.git
-   cd personal-portfolio
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Set up environment variables**
-   
-   Create a `.env.local` file and add your Gemini API key:
-   ```env
-   GEMINI_API_KEY=your_api_key_here
-   ```
-
-4. **Start the development server**
-   ```bash
-   npm run dev
-   ```
-
-5. **Open your browser**
-   
-   Navigate to `http://localhost:3000`
-
----
-
-## 📁 Project Structure
-
-```
-├── components/          # React components
-│   ├── Hero.tsx         # Landing section with particle animation
-│   ├── BentoGrid.tsx    # About & journey grid layout
-│   ├── Artifacts.tsx    # Projects showcase
-│   ├── Testimonials.tsx # Social proof section
-│   ├── Interests.tsx    # Personal interests
-│   └── Footer.tsx       # Contact & footer
-├── contexts/            # React context providers
-├── hooks/               # Custom React hooks
-├── public/              # Static assets
-├── App.tsx              # Main application component
-└── index.html           # Entry point with Tailwind config
+```bash
+npm install
 ```
 
----
+2. Start the development server:
 
-## 📜 License
+```bash
+npm run dev
+```
 
-This project is open source and available under the [MIT License](LICENSE).
+3. Open `http://localhost:3000`.
 
----
+## Scripts
 
-<div align="center">
+- `npm run dev`: start Vite dev server
+- `npm run build`: type-check and build production bundle
+- `npm run preview`: preview the built app
+- `npm run lint`: run ESLint with zero warnings allowed
+- `npm run type-check`: run TypeScript without emit
+- `npm run test`: run Vitest test suite
+- `npm run test:coverage`: run Vitest with coverage thresholds
+- `npm run knip`: detect unused files, exports, and dependencies
 
-**Built with ❤️ by Jonathan Arteaga**
+## Quality and CI
 
-[LinkedIn](https://linkedin.com) · [GitHub](https://github.com)
+GitHub Actions workflows live in `.github/workflows`:
 
-</div>
+- `quality.yml`: lint, type-check, build, knip, tests + coverage
+- `codeql.yml`: static security analysis
+- `dependency-review.yml`: dependency risk gate on PRs
+- `gitleaks.yml`: secret scanning
+- `lighthouse-ci.yml`: performance/accessibility/SEO assertions
+
+## Project Structure
+
+```text
+components/   UI components
+config/       site constants and metadata
+contexts/     React providers (theme, Lenis)
+hooks/        reusable hooks
+public/       static assets
+tests/        Vitest suites
+```
+
+## Links
+
+- LinkedIn: https://www.linkedin.com/in/arteagajonathan
+- GitHub: https://github.com/jonathan-arteaga

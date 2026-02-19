@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 interface Testimonial {
   quote: string;
@@ -32,15 +32,27 @@ const testimonials: Testimonial[] = [
 const duplicatedTestimonials = [...testimonials, ...testimonials];
 
 export const Testimonials: React.FC = () => {
+  const [isTestimonialsPlaying, setIsTestimonialsPlaying] = useState(true);
+
   return (
-    <section className="w-full py-16 border-t-2 border-b-2 border-foreground bg-surface-alt overflow-hidden">
+    <section className="w-full border-t border-b border-border surface-tier-2 section-shell overflow-hidden">
       {/* Section Label */}
-      <div className="px-6 md:px-12 mb-8">
-        <div className="max-w-7xl mx-auto flex items-center gap-3">
-          <div className="w-2 h-2 bg-foreground"></div>
-          <span className="font-mono text-fluid-xs uppercase tracking-widest text-muted font-semibold">
-            Peer Protocols
-          </span>
+      <div className="mb-8">
+        <div className="content-shell-wide flex items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="w-2 h-2 bg-foreground"></div>
+            <span className="type-label text-muted">
+              Peer Protocols
+            </span>
+          </div>
+          <button
+            type="button"
+            onClick={() => setIsTestimonialsPlaying((prev) => !prev)}
+            aria-pressed={isTestimonialsPlaying}
+            className="focus-ring type-label text-muted hover:text-foreground transition-colors px-2 py-1 border border-border hover:border-foreground"
+          >
+            {isTestimonialsPlaying ? 'Pause quotes' : 'Play quotes'}
+          </button>
         </div>
       </div>
 
@@ -53,18 +65,22 @@ export const Testimonials: React.FC = () => {
         <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-surface-alt to-transparent z-10 pointer-events-none"></div>
 
         {/* Scrolling Track */}
-        <div className="flex animate-marquee">
+        <div
+          className={`testimonials-marquee-track${
+            isTestimonialsPlaying ? ' is-playing' : ''
+          }`}
+        >
           {duplicatedTestimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="flex-shrink-0 px-8 py-4 max-w-md"
+              className="flex-shrink-0 px-6 py-5 max-w-xl"
             >
               {/* Quote Block */}
               <div className="space-y-4">
-                <p className="font-serif text-fluid-base text-foreground leading-relaxed">
+                <p className="type-body text-foreground">
                   "{testimonial.quote}"
                 </p>
-                <p className="font-mono text-fluid-xs font-medium text-muted uppercase tracking-wider">
+                <p className="type-tag text-muted">
                   — {testimonial.author}
                 </p>
               </div>
@@ -72,31 +88,6 @@ export const Testimonials: React.FC = () => {
           ))}
         </div>
       </div>
-
-      <style>{`
-        @keyframes marquee {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-
-        .animate-marquee {
-          animation: marquee 40s linear infinite;
-        }
-
-        .animate-marquee:hover {
-          animation-play-state: paused;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .animate-marquee {
-            animation: none;
-          }
-        }
-      `}</style>
     </section>
   );
 };

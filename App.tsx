@@ -8,6 +8,7 @@ import { Artifacts } from './components/Artifacts';
 import { Testimonials } from './components/Testimonials';
 import { Interests } from './components/Interests';
 import { Footer } from './components/Footer';
+import { CustomCursor } from './components/CustomCursor';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -23,6 +24,7 @@ function App() {
   return (
     <ThemeProvider>
       <LenisProvider>
+      <CustomCursor />
       <div
         className={`min-h-screen bg-background text-foreground selection:bg-foreground selection:text-background overflow-x-hidden transition-opacity duration-700 ${
           loaded ? 'opacity-100' : 'opacity-0'
@@ -31,7 +33,7 @@ function App() {
         <Navigation />
 
         <main className="relative">
-          {/* Hero - Full screen with particle animation */}
+          {/* Hero */}
           <Hero />
 
           {/* About & Journey - Bento Grid */}

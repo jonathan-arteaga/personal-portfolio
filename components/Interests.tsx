@@ -50,24 +50,24 @@ export const Interests: React.FC = () => {
     <section
       id="interests"
       ref={sectionRef}
-      className="w-full py-24 md:py-32 px-6 md:px-12 border-t border-border"
+      className="w-full border-t border-border surface-tier-1 section-shell"
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="content-shell">
         {/* Section Header */}
         <div
-          className={`flex items-center gap-3 mb-12 transition-all duration-700 ${
+          className={`flex items-center gap-3 mb-8 transition-all duration-700 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
           }`}
         >
           <div className="w-2 h-2 bg-foreground"></div>
-          <span className="font-mono text-fluid-xs font-semibold uppercase tracking-widest text-muted">
+          <span className="type-label text-muted">
             Beyond Work
           </span>
         </div>
 
         {/* Section Title */}
         <h2
-          className={`font-serif text-fluid-2xl md:text-fluid-3xl font-normal text-foreground mb-12 max-w-2xl transition-all duration-700 delay-100 ${
+          className={`type-heading text-foreground mb-8 max-w-2xl transition-all duration-700 delay-100 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
           }`}
         >
@@ -78,7 +78,7 @@ export const Interests: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {/* Card 1: Music Production - Large featured card */}
           <div
-            className={`lg:col-span-2 card-lift bg-foreground text-background border border-foreground p-6 md:p-8 transition-all duration-700 delay-150 hover:bg-foreground/90 ${
+            className={`lg:col-span-2 card-lift bg-foreground text-background border border-foreground p-5 md:p-7 transition-all duration-700 delay-150 hover:bg-foreground/90 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
             }`}
           >
@@ -86,101 +86,101 @@ export const Interests: React.FC = () => {
               <div className="w-12 h-12 flex items-center justify-center bg-background/10">
                 {interests[0].icon}
               </div>
-              <span className="font-mono text-[10px] uppercase tracking-widest opacity-60">
+              <span className="type-tag opacity-60">
                 Primary hobby
               </span>
             </div>
-            <h3 className="font-sans text-fluid-xl font-semibold mb-2">{interests[0].title}</h3>
-            <p className="font-mono text-fluid-xs uppercase tracking-wider opacity-70 mb-3">
+            <h3 className="type-title mb-2">{interests[0].title}</h3>
+            <p className="type-tag opacity-70 mb-3">
               {interests[0].subtitle}
             </p>
-            <p className="text-fluid-sm opacity-80 leading-relaxed">
+            <p className="type-body-sm opacity-80">
               {interests[0].description}
             </p>
           </div>
 
           {/* Card 2: Music Writing */}
           <div
-            className={`card-lift bg-surface border border-border p-6 transition-all duration-700 delay-200 hover:border-foreground ${
+            className={`card-lift bg-surface border border-border p-5 md:p-6 transition-all duration-700 delay-200 hover:border-foreground ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
             }`}
           >
-            <div className="w-10 h-10 flex items-center justify-center bg-accent/30 text-foreground mb-4">
+            <div className="w-10 h-10 flex items-center justify-center interactive-accent-secondary mb-4">
               {interests[1].icon}
             </div>
-            <h3 className="font-sans text-fluid-lg font-semibold text-foreground mb-1">
+            <h3 className="type-title text-foreground mb-1">
               {interests[1].title}
             </h3>
-            <p className="font-mono text-[11px] uppercase tracking-wider text-muted mb-3">
+            <p className="type-tag text-muted mb-3">
               {interests[1].subtitle}
             </p>
-            <p className="text-fluid-sm text-muted leading-relaxed">
+            <p className="type-body-sm text-muted">
               {interests[1].description}
             </p>
           </div>
 
           {/* Card 3: Vibe Coding */}
           <div
-            className={`card-lift bg-accent/30 border border-border p-6 transition-all duration-700 delay-250 hover:border-foreground hover:bg-accent/50 ${
+            className={`card-lift interactive-accent-secondary p-5 md:p-6 transition-all duration-700 delay-250 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
             }`}
           >
             <div className="w-10 h-10 flex items-center justify-center bg-foreground text-background mb-4">
               {interests[2].icon}
             </div>
-            <h3 className="font-sans text-fluid-lg font-semibold text-foreground mb-1">
+            <h3 className="type-title text-foreground mb-1">
               {interests[2].title}
             </h3>
-            <p className="font-mono text-[11px] uppercase tracking-wider text-muted mb-3">
+            <p className="type-tag text-muted mb-3">
               {interests[2].subtitle}
             </p>
-            <p className="text-fluid-sm text-muted leading-relaxed">
+            <p className="type-body-sm text-muted">
               {interests[2].description}
             </p>
           </div>
 
           {/* Card 4: Cinema */}
           <div
-            className={`card-lift bg-surface border border-border p-6 transition-all duration-700 delay-300 hover:border-foreground ${
+            className={`card-lift bg-surface border border-border p-5 md:p-6 transition-all duration-700 delay-300 hover:border-foreground ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
             }`}
           >
-            <div className="w-10 h-10 flex items-center justify-center bg-accent/30 text-foreground mb-4">
+            <div className="w-10 h-10 flex items-center justify-center interactive-accent-secondary mb-4">
               {interests[3].icon}
             </div>
-            <h3 className="font-sans text-fluid-lg font-semibold text-foreground mb-1">
+            <h3 className="type-title text-foreground mb-1">
               {interests[3].title}
             </h3>
-            <p className="font-mono text-[11px] uppercase tracking-wider text-muted mb-3">
+            <p className="type-tag text-muted mb-3">
               {interests[3].subtitle}
             </p>
-            <p className="text-fluid-sm text-muted leading-relaxed">
+            <p className="type-body-sm text-muted">
               {interests[3].description}
             </p>
           </div>
 
           {/* Card 5: Fitness */}
           <div
-            className={`card-lift bg-surface border border-border p-6 transition-all duration-700 delay-350 hover:border-foreground ${
+            className={`card-lift bg-surface border border-border p-5 md:p-6 transition-all duration-700 delay-350 hover:border-foreground ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
             }`}
           >
             <div className="flex items-start justify-between mb-4">
-              <div className="w-10 h-10 flex items-center justify-center bg-accent/30 text-foreground">
+              <div className="w-10 h-10 flex items-center justify-center interactive-accent-secondary">
                 {interests[4].icon}
               </div>
-              <span className="inline-flex items-center gap-1 font-mono text-[10px] font-semibold uppercase tracking-widest text-foreground bg-accent px-1.5 py-0.5">
+              <span className="inline-flex items-center gap-1 type-tag font-semibold px-1.5 py-0.5 interactive-accent-primary">
                 <span className="w-1 h-1 bg-accent-dark rounded-full animate-pulse"></span>
                 Daily
               </span>
             </div>
-            <h3 className="font-sans text-fluid-lg font-semibold text-foreground mb-1">
+            <h3 className="type-title text-foreground mb-1">
               {interests[4].title}
             </h3>
-            <p className="font-mono text-[11px] uppercase tracking-wider text-muted mb-3">
+            <p className="type-tag text-muted mb-3">
               {interests[4].subtitle}
             </p>
-            <p className="text-fluid-sm text-muted leading-relaxed">
+            <p className="type-body-sm text-muted">
               {interests[4].description}
             </p>
           </div>
