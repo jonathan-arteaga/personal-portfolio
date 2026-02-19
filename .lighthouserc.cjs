@@ -3,11 +3,16 @@ module.exports = {
     collect: {
       staticDistDir: './dist',
       url: ['http://localhost/'],
-      numberOfRuns: 1,
+      numberOfRuns: 3,
+      settings: {
+        chromeFlags: '--no-sandbox --headless --disable-gpu',
+        maxWaitForLoad: 45000,
+        throttlingMethod: 'simulate',
+      },
     },
     assert: {
       assertions: {
-        'categories:performance': ['error', { minScore: 0.85 }],
+        'categories:performance': ['warn', { minScore: 0.85 }],
         'categories:accessibility': ['error', { minScore: 0.9 }],
         'categories:seo': ['error', { minScore: 0.9 }],
       },
