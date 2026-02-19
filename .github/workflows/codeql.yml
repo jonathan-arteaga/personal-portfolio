@@ -10,6 +10,9 @@ on:
 jobs:
   analyze:
     name: Analyze
+    # Code scanning via CodeQL isn't available on all private-repo plans.
+    # Skip this job when the repository is private to avoid failing CI.
+    if: ${{ github.event.repository.private == false }}
     runs-on: ubuntu-latest
     permissions:
       actions: read
