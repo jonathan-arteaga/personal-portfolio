@@ -279,7 +279,7 @@ export const Artifacts: React.FC = () => {
           {tabs.map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
+                onClick={() => { setActiveTab(tab.id); }}
                 className={`focus-ring flex items-center gap-2 px-4 py-2 type-body-sm font-medium transition-all duration-200 border ${
                   activeTab === tab.id
                     ? 'interactive-accent-primary'
@@ -321,7 +321,7 @@ const ProjectCard: React.FC<CardProps> = ({ project, index, isVisible }) => (
     className={`group border border-border overflow-hidden transition-all duration-500 hover:border-foreground elev-1 hover-elev-3 ${
       isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
     }`}
-    style={{ transitionDelay: `${200 + index * 80}ms` }}
+    style={{ transitionDelay: `${String(200 + index * 80)}ms` }}
   >
     {/* Preview Area */}
     <div

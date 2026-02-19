@@ -49,7 +49,7 @@ export const CustomCursor: React.FC = () => {
 
     const onOut = (e: MouseEvent) => {
       const related = e.relatedTarget as HTMLElement | null;
-      if (!related || !related.closest?.(SELECTOR)) {
+      if (!related?.closest(SELECTOR)) {
         hoveredEl = null;
       }
     };
@@ -99,11 +99,11 @@ export const CustomCursor: React.FC = () => {
       const r = spring(sr);
       const o = spring(so);
 
-      el.style.transform = `translate(${x}px, ${y}px)`;
-      el.style.width = `${w}px`;
-      el.style.height = `${h}px`;
-      el.style.borderRadius = `${r}px`;
-      el.style.opacity = `${o}`;
+      el.style.transform = `translate(${String(x)}px, ${String(y)}px)`;
+      el.style.width = `${String(w)}px`;
+      el.style.height = `${String(h)}px`;
+      el.style.borderRadius = `${String(r)}px`;
+      el.style.opacity = String(o);
 
       rafRef.current = requestAnimationFrame(animate);
     };

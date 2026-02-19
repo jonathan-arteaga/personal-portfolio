@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useRef, useSyncExternalStore } from 'react';
 import Lenis from 'lenis';
 
 interface LenisContextType {
@@ -13,15 +13,27 @@ const LenisContext = createContext<LenisContextType>({
 
 export const useLenis = () => useContext(LenisContext);
 
+const prefersReducedMotion =
+  typeof window !== 'undefined' &&
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 export const LenisProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [lenis, setLenis] = useState<Lenis | null>(null);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const lenisRef = useRef<Lenis | null>(null);
+  const subscribersRef = useRef(new Set<() => void>());
+
+  const subscribe = (callback: () => void) => {
+    subscribersRef.current.add(callback);
+    return () => { subscribersRef.current.delete(callback); };
+  };
+
+  const lenis = useSyncExternalStore(
+    subscribe,
+    () => lenisRef.current,
+    () => null,
+  );
 
   useEffect(() => {
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    setPrefersReducedMotion(reducedMotion);
-
-    if (reducedMotion) {
+    if (prefersReducedMotion) {
       return;
     }
 
@@ -32,7 +44,10 @@ export const LenisProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       smoothWheel: true,
     });
 
-    setLenis(instance);
+    lenisRef.current = instance;
+    const subscribers = subscribersRef.current;
+    subscribers.forEach((cb) => { cb(); });
+
     const root = document.documentElement;
     root.classList.add('lenis', 'lenis-smooth');
 
@@ -46,7 +61,8 @@ export const LenisProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     return () => {
       cancelAnimationFrame(rafId);
       instance.destroy();
-      setLenis(null);
+      lenisRef.current = null;
+      subscribers.forEach((cb) => { cb(); });
       root.classList.remove('lenis', 'lenis-smooth');
     };
   }, []);

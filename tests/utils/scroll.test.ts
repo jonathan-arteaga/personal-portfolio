@@ -10,13 +10,14 @@ describe('scroll utilities', () => {
   });
 
   it('scrollToTopWithLenis uses Lenis when available', () => {
-    const lenis = { scrollTo: vi.fn() } as unknown as Lenis;
+    const scrollTo = vi.fn();
+    const lenis = { scrollTo } as unknown as Lenis;
     const preventDefault = vi.fn();
 
     scrollToTopWithLenis(lenis, { preventDefault } as unknown as React.MouseEvent<HTMLElement>);
 
     expect(preventDefault).toHaveBeenCalledTimes(1);
-    expect(lenis.scrollTo).toHaveBeenCalledWith(0, { immediate: false });
+    expect(scrollTo).toHaveBeenCalledWith(0, { immediate: false });
   });
 
   it('scrollToTopWithLenis falls back to window.scrollTo', () => {
@@ -30,32 +31,35 @@ describe('scroll utilities', () => {
   });
 
   it('scrollToSectionWithLenis no-ops when target is missing', () => {
-    const lenis = { scrollTo: vi.fn() } as unknown as Lenis;
+    const scrollTo = vi.fn();
+    const lenis = { scrollTo } as unknown as Lenis;
 
     scrollToSectionWithLenis(lenis, 'missing-section');
 
-    expect(lenis.scrollTo).not.toHaveBeenCalled();
+    expect(scrollTo).not.toHaveBeenCalled();
   });
 
   it('scrollToSectionWithLenis uses Lenis for existing targets', () => {
-    const lenis = { scrollTo: vi.fn() } as unknown as Lenis;
+    const scrollTo = vi.fn();
+    const lenis = { scrollTo } as unknown as Lenis;
     const target = document.createElement('section');
     target.id = 'about';
     document.body.appendChild(target);
 
     scrollToSectionWithLenis(lenis, 'about');
 
-    expect(lenis.scrollTo).toHaveBeenCalledWith(target, { offset: -80 });
+    expect(scrollTo).toHaveBeenCalledWith(target, { offset: -80 });
   });
 
   it('scrollToSectionWithLenis falls back to native scrolling', () => {
     const target = document.createElement('section');
     target.id = 'projects';
-    target.scrollIntoView = vi.fn();
+    const scrollIntoView = vi.fn();
+    target.scrollIntoView = scrollIntoView;
     document.body.appendChild(target);
 
     scrollToSectionWithLenis(null, 'projects');
 
-    expect(target.scrollIntoView).toHaveBeenCalledWith({ behavior: 'smooth' });
+    expect(scrollIntoView).toHaveBeenCalledWith({ behavior: 'smooth' });
   });
 });

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { X } from 'lucide-react';
-import { NavItem } from '../types';
+import { type NavItem } from '../types';
 import { ThemeToggle } from './ThemeToggle';
 import { useLenis } from '../contexts/LenisContext';
 import { scrollToTopWithLenis, scrollToSectionWithLenis } from '../utils';
@@ -89,7 +89,7 @@ export const Navigation: React.FC = () => {
   useEffect(() => {
     if (lenis) return;
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => { window.removeEventListener('scroll', handleScroll); };
   }, [lenis, handleScroll]);
 
   // Prevent body scroll when mobile menu is open
@@ -124,7 +124,7 @@ export const Navigation: React.FC = () => {
       {/* Scroll Progress Bar */}
       <div
         className="progress-bar"
-        style={{ width: `${scrollProgress}%` }}
+        style={{ width: `${String(scrollProgress)}%` }}
       />
 
       <nav
@@ -160,7 +160,7 @@ export const Navigation: React.FC = () => {
                 <a
                   key={item.label}
                   href={item.href}
-                  onClick={(e) => onNavLinkClick(e, item.href)}
+                  onClick={(e) => { onNavLinkClick(e, item.href); }}
                   className={`focus-ring type-body-sm font-medium transition-colors ${
                     isActive
                       ? 'interactive-accent-primary px-2 py-1'
@@ -180,7 +180,7 @@ export const Navigation: React.FC = () => {
             <button
               type="button"
               className="focus-ring type-body-sm font-medium text-foreground hover:text-muted transition-colors"
-              onClick={() => setMobileMenuOpen(true)}
+              onClick={() => { setMobileMenuOpen(true); }}
               aria-expanded={mobileMenuOpen}
               aria-controls={mobileMenuId}
               aria-label="Open navigation menu"
@@ -206,7 +206,7 @@ export const Navigation: React.FC = () => {
           <button
             type="button"
             className="focus-ring w-12 h-12 flex items-center justify-center text-foreground hover:text-muted transition-colors"
-            onClick={() => setMobileMenuOpen(false)}
+            onClick={() => { setMobileMenuOpen(false); }}
             aria-label="Close navigation menu"
           >
             <X size={28} strokeWidth={1.5} />
@@ -221,7 +221,7 @@ export const Navigation: React.FC = () => {
               <a
                 key={item.label}
                 href={item.href}
-                onClick={(e) => onNavLinkClick(e, item.href)}
+                onClick={(e) => { onNavLinkClick(e, item.href); }}
                 className={`focus-ring type-heading transition-colors ${
                   isActive ? 'text-foreground' : 'text-muted hover:text-foreground'
                 }`}

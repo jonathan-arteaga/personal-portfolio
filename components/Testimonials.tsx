@@ -47,7 +47,7 @@ export const Testimonials: React.FC = () => {
           </div>
           <button
             type="button"
-            onClick={() => setIsTestimonialsPlaying((prev) => !prev)}
+            onClick={() => { setIsTestimonialsPlaying((prev) => !prev); }}
             aria-pressed={isTestimonialsPlaying}
             className="focus-ring type-label text-muted hover:text-foreground transition-colors px-2 py-1 border border-border hover:border-foreground"
           >

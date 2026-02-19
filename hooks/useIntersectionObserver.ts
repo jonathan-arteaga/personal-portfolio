@@ -32,7 +32,7 @@ export const useIntersectionObserver = <T extends HTMLElement>(
     );
 
     observer.observe(element);
-    return () => observer.disconnect();
+    return () => { observer.disconnect(); };
   }, [threshold, rootMargin, triggerOnce]);
 
   return { ref, isVisible };

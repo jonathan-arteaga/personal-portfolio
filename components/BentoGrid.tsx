@@ -176,7 +176,7 @@ export const BentoGrid: React.FC = () => {
                   <span
                     className="word-reveal inline-block"
                     style={{
-                      animationDelay: `${0.3 + i * 0.06}s`,
+                      animationDelay: `${String(0.3 + i * 0.06)}s`,
                       animationPlayState: isVisible ? 'running' : 'paused',
                     }}
                   >

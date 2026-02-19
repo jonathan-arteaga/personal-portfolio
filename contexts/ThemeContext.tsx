@@ -12,18 +12,16 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>(() => {
     // Check localStorage first
-    if (typeof window !== 'undefined') {
-      try {
-        const stored = localStorage.getItem('theme') as Theme;
-        if (stored) return stored;
+    try {
+      const stored = localStorage.getItem('theme') as Theme | null;
+      if (stored) return stored;
 
-        // Check system preference
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          return 'dark';
-        }
-      } catch {
-        // localStorage unavailable (private browsing, etc.)
+      // Check system preference
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
       }
+    } catch {
+      // localStorage unavailable (private browsing, etc.)
     }
     return 'light';
   });
@@ -62,7 +60,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     };
 
     mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
+    return () => { mediaQuery.removeEventListener('change', handleChange); };
   }, []);
 
   const toggleTheme = () => {

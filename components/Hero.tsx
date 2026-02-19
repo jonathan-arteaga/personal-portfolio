@@ -93,7 +93,7 @@ export const Hero: React.FC = () => {
                 >
                   <span
                     className="word-reveal inline-block"
-                    style={{ animationDelay: `${0.1 + i * 0.08}s` }}
+                    style={{ animationDelay: `${String(0.1 + i * 0.08)}s` }}
                   >
                     {word}
                   </span>
@@ -152,7 +152,7 @@ export const Hero: React.FC = () => {
                 <span className="type-label text-muted">Tools in rotation</span>
                 <button
                   type="button"
-                  onClick={() => setIsTechMarqueePlaying((prev) => !prev)}
+                  onClick={() => { setIsTechMarqueePlaying((prev) => !prev); }}
                   aria-pressed={isTechMarqueePlaying}
                   className="focus-ring type-label text-muted hover:text-foreground transition-colors px-2 py-1 border border-border hover:border-foreground"
                 >

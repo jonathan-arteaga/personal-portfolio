@@ -1,17 +1,9 @@
 {
   "$schema": "https://unpkg.com/knip@latest/schema.json",
   "entry": [
-    "index.tsx",
-    "vite.config.ts",
-    "vitest.config.ts",
-    "eslint.config.js",
-    "tailwind.config.cjs",
-    "postcss.config.cjs"
+    ".lighthouserc.cjs"
   ],
   "project": [
     "**/*.{ts,tsx,js,cjs,mjs}"
-  ],
-  "ignore": [
-    "dist/**"
   ]
 }

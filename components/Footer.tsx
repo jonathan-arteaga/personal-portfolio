@@ -115,7 +115,7 @@ export const Footer: React.FC = () => {
             © {new Date().getFullYear()} Jonathan Arteaga
           </span>
           <button
-            onClick={(e) => scrollToTopWithLenis(lenis, e)}
+            onClick={(e) => { scrollToTopWithLenis(lenis, e); }}
             className="focus-ring group type-body-sm font-medium text-muted hover:text-foreground transition-colors flex items-center gap-2"
           >
             Back to Top

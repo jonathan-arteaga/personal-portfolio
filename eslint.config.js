@@ -19,7 +19,7 @@ export default tseslint.config(
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
       parserOptions: {
-        projectService: true,
+        project: './tsconfig.eslint.json',
         tsconfigRootDir: __dirname,
       },
     },
@@ -48,6 +48,12 @@ export default tseslint.config(
         { prefer: 'type-imports', fixStyle: 'inline-type-imports' },
       ],
       '@typescript-eslint/no-explicit-any': 'warn',
+    },
+  },
+  {
+    files: ['contexts/**/*.{ts,tsx}'],
+    rules: {
+      'react-refresh/only-export-components': 'off',
     },
   }
 );
