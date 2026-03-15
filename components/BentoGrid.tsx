@@ -15,19 +15,19 @@ const timelineData: TimelineNode[] = [
     role: 'Lead Solutions Engineer',
     period: '2019 — Present',
     isCurrent: true,
-    description: 'Promoted 3x in 5 years. I lead technical strategy for complex deals and build the demos that get executives to say yes.',
+    description: 'Enterprise deals, technical strategy, and the demos that close them. Promoted 3x in 5 years.',
   },
   {
     company: 'Enterprise Admin',
     role: 'Salesforce Administrator',
     period: '2016 — 2019',
-    description: 'Ran Salesforce orgs for manufacturing and consulting companies.',
+    description: 'Ran Salesforce orgs end to end. Learned how businesses actually operate under the hood.',
   },
   {
     company: 'AT&T',
     role: 'B2B Sales Consultant',
     period: '2010 — 2017',
-    description: 'B2B sales for small business accounts. Learned to listen and close.',
+    description: 'Sold technology to small businesses. Learned to listen first, solve second.',
   },
 ];
 
@@ -71,7 +71,7 @@ export const BentoGrid: React.FC = () => {
               Jonathan Arteaga
             </h3>
             <p className="type-tag text-muted mt-1">
-              Lead Solutions Engineer
+              Solutions Engineer & Builder
             </p>
           </div>
 
@@ -165,7 +165,7 @@ export const BentoGrid: React.FC = () => {
               ))}
             </h2>
             <p className="type-body-sm text-muted">
-              Eighteen years in sales gave me a sharp ear for what customers actually need. Five years in solutions engineering taught me how to build it. Now I do both: design the technical solution and help close the deal.
+              I've spent 18 years learning what businesses need and how to build it. Sales taught me to listen. Engineering taught me to build. Now I do both, whether that's architecting an enterprise solution or building an AI tool that saves a small team 20 hours a week.
             </p>
           </div>
 
@@ -179,7 +179,7 @@ export const BentoGrid: React.FC = () => {
               Focus
             </span>
             <p className="type-body font-medium text-foreground">
-              AI, Multi-Cloud, Technical Enablement
+              AI, Automation, Operations Technology
             </p>
           </div>
 
@@ -197,9 +197,9 @@ export const BentoGrid: React.FC = () => {
             </p>
           </div>
 
-          {/* Card 7: AI Philosophy - wide card */}
+          {/* Card 7: AI Philosophy - full width card */}
           <div
-            className={`md:col-span-2 bg-foreground text-background border border-foreground p-5 md:p-7 transition-all duration-700 delay-400 hover:bg-foreground/90 ${
+            className={`md:col-span-2 lg:col-span-4 bg-foreground text-background border border-foreground p-5 md:p-7 transition-all duration-700 delay-400 hover:bg-foreground/90 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
             }`}
           >
@@ -211,8 +211,11 @@ export const BentoGrid: React.FC = () => {
                 On AI
               </span>
             </div>
+            <p className="type-body-sm opacity-90 mb-4">
+              I don't just talk about AI. I build with it. I've designed AI-powered workflow tools that cut manual work by 60-80% for small operations teams. I build custom web applications, automation systems, and analytics stacks using Claude, Next.js, and modern tooling.
+            </p>
             <p className="type-body-sm opacity-90">
-              I stay ahead on AI. Not just pitching it - building with it. Slack workflows, Gemini Gems, automations that save my team hours every week. When something new lands, I'm usually the one showing others how to use it.
+              My approach: understand the actual workflow first, then build the simplest thing that solves the real problem.
             </p>
           </div>
 

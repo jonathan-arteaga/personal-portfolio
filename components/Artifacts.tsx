@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
-import { ShoppingCart, Store, RefreshCw, List, Building2, Smartphone, Cloud, Globe, Lightbulb } from 'lucide-react';
+import { ShoppingCart, Store, RefreshCw, List, Building2, Smartphone, Cloud, Globe, Lightbulb, Wrench, Zap, BarChart3, Code } from 'lucide-react';
 
-type TabCategory = 'salesforce' | 'websites' | 'prototypes';
+type TabCategory = 'salesforce' | 'websites' | 'prototypes' | 'independent';
 
 interface Tab {
   id: TabCategory;
@@ -14,6 +14,7 @@ const tabs: Tab[] = [
   { id: 'salesforce', label: 'Salesforce', icon: <Cloud className="w-3.5 h-3.5" /> },
   { id: 'websites',   label: 'Websites',   icon: <Globe className="w-3.5 h-3.5" /> },
   { id: 'prototypes', label: 'Prototypes', icon: <Lightbulb className="w-3.5 h-3.5" /> },
+  { id: 'independent', label: 'Independent', icon: <Wrench className="w-3.5 h-3.5" /> },
 ];
 
 interface ProjectData {
@@ -178,6 +179,69 @@ const POSMock = () => (
   </div>
 );
 
+const WorkflowAutomationMock = () => (
+  <div className="w-full h-full flex items-center justify-center p-6">
+    <div className="flex items-center gap-3">
+      {[
+        'from-amber-400 to-orange-500',
+        'from-orange-500 to-rose-500',
+        'from-rose-500 to-purple-600',
+      ].map((gradient, i) => (
+        <div key={i} className="flex items-center gap-3">
+          <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${gradient} opacity-80`} />
+          {i < 2 && (
+            <svg className="w-5 h-5 text-gray-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M5 12h14M13 5l7 7-7 7" />
+            </svg>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
+const OperationsInfraMock = () => (
+  <div className="w-full h-full flex items-center justify-center p-6">
+    <div className="grid grid-cols-3 gap-2">
+      {[
+        'from-blue-400 to-cyan-400',
+        'from-cyan-400 to-teal-400',
+        'from-teal-400 to-emerald-400',
+        'from-emerald-400 to-green-400',
+        'from-blue-500 to-indigo-400',
+        'from-indigo-400 to-violet-400',
+      ].map((gradient, i) => (
+        <div
+          key={i}
+          className={`w-10 h-10 rounded-lg bg-gradient-to-br ${gradient} opacity-70`}
+        />
+      ))}
+    </div>
+  </div>
+);
+
+const WebAppMock = () => (
+  <div className="w-full h-full flex items-center justify-center p-6">
+    <div className="relative">
+      {[0, 1, 2].map((i) => (
+        <div
+          key={i}
+          className="rounded-xl border border-gray-200/50"
+          style={{
+            width: `${140 - i * 16}px`,
+            height: `${90 - i * 10}px`,
+            background: `linear-gradient(135deg, rgba(99,102,241,${0.15 + i * 0.1}), rgba(168,85,247,${0.15 + i * 0.1}))`,
+            position: i === 0 ? 'relative' : 'absolute',
+            top: i === 0 ? 0 : `${i * -12}px`,
+            left: i === 0 ? 0 : `${i * 12}px`,
+            zIndex: 3 - i,
+          }}
+        />
+      ))}
+    </div>
+  </div>
+);
+
 /* ── Project data ─────────────────────────────────────────────── */
 
 const projects: ProjectData[] = [
@@ -234,6 +298,33 @@ const projects: ProjectData[] = [
     icon: <Smartphone className="w-4 h-4" />,
     tags: ['React Native', 'Stripe Terminal'],
     mockUI: <POSMock />,
+  },
+  {
+    id: 'ind-001',
+    category: 'independent',
+    title: 'AI Workflow Automation',
+    description: 'Custom tools that take messy manual processes and turn them into one-click workflows. Upload data, get structured output. No prompt engineering required by the end user.',
+    icon: <Zap className="w-4 h-4" />,
+    tags: ['Claude', 'Python', 'Automation'],
+    mockUI: <WorkflowAutomationMock />,
+  },
+  {
+    id: 'ind-002',
+    category: 'independent',
+    title: 'Digital Operations Infrastructure',
+    description: 'Websites, analytics, lead routing, and reporting systems built from scratch for small teams. Everything connected, everything measured.',
+    icon: <BarChart3 className="w-4 h-4" />,
+    tags: ['Next.js', 'Analytics', 'Integrations'],
+    mockUI: <OperationsInfraMock />,
+  },
+  {
+    id: 'ind-003',
+    category: 'independent',
+    title: 'Custom Web Applications',
+    description: 'Production apps built with Next.js, Tailwind, and modern tooling. Fast, responsive, designed for the people who actually use them.',
+    icon: <Code className="w-4 h-4" />,
+    tags: ['Next.js', 'Tailwind', 'React'],
+    mockUI: <WebAppMock />,
   },
 ];
 
