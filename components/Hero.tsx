@@ -3,7 +3,7 @@ import { GradientBackground } from './GradientBackground';
 import { useTheme } from '../contexts/ThemeContext';
 import { GITHUB_URL, LINKEDIN_URL } from '../config/site';
 
-const HEADLINE_WORDS = 'I prove the value of software.'.split(' ');
+const HEADLINE_WORDS = 'I solve problems with technology.'.split(' ');
 // Last word starts at 0.1 + 5 * 0.08 = 0.5s; its animation takes 0.7s → done ~1.2s
 // Content items fade in at 0.8s for a natural overlap with the last word revealing
 const CONTENT_DELAY = '0.8s';
@@ -18,10 +18,43 @@ const techTags = [
     ),
   },
   {
-    name: 'Agentforce',
+    name: 'Claude',
     icon: (
-      <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="#00A1E0">
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" />
+      <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="#D97757">
+        <path d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z" />
+      </svg>
+    ),
+  },
+  {
+    name: 'Cursor',
+    icon: (
+      <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M3 3l7.5 18L13 13l8-2.5z" />
+      </svg>
+    ),
+  },
+  {
+    name: 'Next.js',
+    icon: (
+      <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M11.572 0c-.176 0-.31.001-.358.007a19.76 19.76 0 0 1-.364.033C7.443.346 4.25 2.185 2.228 5.012a11.875 11.875 0 0 0-2.119 5.243c-.096.659-.108.854-.108 1.747s.012 1.089.108 1.748c.652 4.506 3.86 8.292 8.209 9.695.779.25 1.6.422 2.534.525.363.04 1.935.04 2.299 0 1.611-.178 2.977-.577 4.323-1.264.207-.106.247-.134.219-.158-.02-.013-.9-1.193-1.955-2.62l-1.919-2.592-2.404-3.558a338.739 338.739 0 0 0-2.422-3.556c-.009-.002-.018 1.579-.023 3.51-.007 3.38-.01 3.515-.052 3.595a.426.426 0 0 1-.206.214c-.075.037-.14.044-.495.044H7.81l-.108-.068a.438.438 0 0 1-.157-.171l-.05-.106.006-4.703.007-4.705.072-.092a.645.645 0 0 1 .174-.143c.096-.047.134-.051.54-.051.478 0 .558.018.682.154.035.038 1.337 1.999 2.895 4.361a10760.433 10760.433 0 0 0 4.735 7.17l1.9 2.879.096-.063a12.317 12.317 0 0 0 2.466-2.163 11.944 11.944 0 0 0 2.824-6.134c.096-.66.108-.854.108-1.748 0-.893-.012-1.088-.108-1.747-.652-4.506-3.859-8.292-8.208-9.695a12.597 12.597 0 0 0-2.499-.523A33.119 33.119 0 0 0 11.572 0zm4.069 7.217c.347 0 .408.005.486.047a.473.473 0 0 1 .237.277c.018.06.023 1.365.018 4.304l-.006 4.218-.744-1.14-.746-1.14v-3.066c0-1.982.01-3.097.023-3.15a.478.478 0 0 1 .233-.296c.096-.05.13-.054.5-.054z" />
+      </svg>
+    ),
+  },
+  {
+    name: 'Vercel',
+    icon: (
+      <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 1L24 22H0z" />
+      </svg>
+    ),
+  },
+  {
+    name: 'Python',
+    icon: (
+      <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="#3776AB">
+        <path d="M11.914 0C5.82 0 6.2 2.656 6.2 2.656l.007 2.752h5.814v.826H3.9S0 5.789 0 11.969c0 6.18 3.403 5.96 3.403 5.96h2.03v-2.867s-.109-3.402 3.35-3.402h5.766s3.24.052 3.24-3.134V3.2S18.28 0 11.914 0zM8.708 1.85a1.06 1.06 0 1 1 0 2.118 1.06 1.06 0 0 1 0-2.118z" />
+        <path d="M12.086 24c6.094 0 5.714-2.656 5.714-2.656l-.007-2.752h-5.814v-.826h8.123s3.9.445 3.9-5.735c0-6.18-3.404-5.96-3.404-5.96h-2.03v2.867s.109 3.402-3.348 3.402H9.453s-3.24-.052-3.24 3.134v5.326S5.72 24 12.086 24zm3.206-1.85a1.06 1.06 0 1 1 0-2.118 1.06 1.06 0 0 1 0 2.118z" />
       </svg>
     ),
   },
@@ -30,14 +63,6 @@ const techTags = [
     icon: (
       <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="#8E75B2">
         <path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Claude',
-    icon: (
-      <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="#D97757">
-        <path d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z" />
       </svg>
     ),
   },
@@ -74,14 +99,6 @@ export const Hero: React.FC = () => {
           {/* Left Column — Text */}
           <div className="flex flex-col justify-center order-2 lg:order-1">
 
-            {/* Role label */}
-            <p
-              className="type-label text-muted mb-5 opacity-0 animate-fade-in"
-              style={{ animationDelay: '0.05s', animationFillMode: 'forwards' }}
-            >
-              Lead Solutions Engineer at Salesforce
-            </p>
-
             {/* Headline — word-by-word stagger */}
             <h1 className="type-display text-foreground mb-6">
               {HEADLINE_WORDS.map((word, i) => (
@@ -105,8 +122,7 @@ export const Hero: React.FC = () => {
               className="type-body text-muted max-w-2xl mb-10 opacity-0 animate-fade-in"
               style={{ animationDelay: CONTENT_DELAY, animationFillMode: 'forwards' }}
             >
-              From first conversation to final demo — I find the real problem,
-              architect the solution, and make the complex feel simple.
+              Eighteen years of figuring out what businesses actually need and building the systems that deliver it. From enterprise platforms to AI-powered workflow tools, I make the complex feel simple.
             </p>
 
             {/* Social Links */}
