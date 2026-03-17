@@ -3,7 +3,7 @@ import { GradientBackground } from './GradientBackground';
 import { useTheme } from '../contexts/ThemeContext';
 import { GITHUB_URL, LINKEDIN_URL } from '../config/site';
 
-const HEADLINE_WORDS = 'I make complex solutions feel obvious.'.split(' ');
+const HEADLINE_WORDS = 'I make complex solutions feel intuitive.'.split(' ');
 // Last word starts at 0.1 + 5 * 0.08 = 0.5s; its animation takes 0.7s → done ~1.2s
 // Content items fade in at 0.8s for a natural overlap with the last word revealing
 const CONTENT_DELAY = '0.8s';
