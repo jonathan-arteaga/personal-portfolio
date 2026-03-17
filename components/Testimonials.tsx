@@ -59,10 +59,10 @@ export const Testimonials: React.FC = () => {
       {/* Marquee Container */}
       <div className="relative">
         {/* Gradient Fade Left */}
-        <div className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none" style={{ background: 'linear-gradient(to right, var(--surface-alt), transparent)' }}></div>
+        <div className="absolute left-0 top-0 bottom-0 w-10 z-10 pointer-events-none" style={{ background: 'linear-gradient(to right, var(--surface-alt), transparent)' }}></div>
 
         {/* Gradient Fade Right */}
-        <div className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none" style={{ background: 'linear-gradient(to left, var(--surface-alt), transparent)' }}></div>
+        <div className="absolute right-0 top-0 bottom-0 w-10 z-10 pointer-events-none" style={{ background: 'linear-gradient(to left, var(--surface-alt), transparent)' }}></div>
 
         {/* Scrolling Track */}
         <div
@@ -77,10 +77,10 @@ export const Testimonials: React.FC = () => {
             >
               {/* Quote Block */}
               <div className="space-y-4">
-                <p className="type-body text-foreground">
+                <p className="type-body text-foreground" style={{ fontSize: 'clamp(1.15rem, 1.5vw, 1.35rem)', fontWeight: 500 }}>
                   "{testimonial.quote}"
                 </p>
-                <p className="type-tag text-muted">
+                <p className="type-tag text-foreground" style={{ opacity: 0.7 }}>
                   — {testimonial.author}
                 </p>
               </div>
