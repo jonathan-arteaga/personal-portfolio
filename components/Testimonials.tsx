@@ -41,7 +41,7 @@ export const Testimonials: React.FC = () => {
   useEffect(() => {
     if (!isPlaying) return;
     const timer = setInterval(next, ROTATE_INTERVAL);
-    return () => clearInterval(timer);
+    return () => { clearInterval(timer); };
   }, [isPlaying, next]);
 
   return (
@@ -57,7 +57,7 @@ export const Testimonials: React.FC = () => {
           </div>
           <button
             type="button"
-            onClick={() => setIsPlaying((prev) => !prev)}
+            onClick={() => { setIsPlaying((prev) => !prev); }}
             aria-pressed={isPlaying}
             className="focus-ring type-label text-muted hover:text-foreground transition-colors px-2 py-1 border border-border hover:border-foreground"
           >
