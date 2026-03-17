@@ -59,10 +59,10 @@ export const Testimonials: React.FC = () => {
       {/* Marquee Container */}
       <div className="relative">
         {/* Gradient Fade Left */}
-        <div className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none" style={{ background: 'linear-gradient(to right, var(--surface-alt), transparent)' }}></div>
+        <div className="absolute left-0 top-0 bottom-0 w-10 z-10 pointer-events-none" style={{ background: 'linear-gradient(to right, var(--surface-alt), transparent)' }}></div>
 
         {/* Gradient Fade Right */}
-        <div className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none" style={{ background: 'linear-gradient(to left, var(--surface-alt), transparent)' }}></div>
+        <div className="absolute right-0 top-0 bottom-0 w-10 z-10 pointer-events-none" style={{ background: 'linear-gradient(to left, var(--surface-alt), transparent)' }}></div>
 
         {/* Scrolling Track */}
         <div
