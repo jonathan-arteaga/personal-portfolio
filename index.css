@@ -449,19 +449,47 @@
         to   { transform: translateX(-50%); }
       }
 
-      /* ===== TESTIMONIALS MARQUEE ===== */
-      .testimonials-marquee-track {
+      /* ===== TESTIMONIALS ROTATE ===== */
+      .testimonial-stage {
+        position: relative;
+        min-height: 8rem;
+      }
+      .testimonial-slide {
+        position: absolute;
+        inset: 0;
         display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        pointer-events: none;
       }
-      .testimonials-marquee-track.is-playing {
-        animation: testimonialsMarquee 20s linear infinite;
+      .testimonial-slide.is-active {
+        position: relative;
+        opacity: 1;
+        pointer-events: auto;
       }
-      .testimonials-marquee-track.is-playing:hover {
-        animation-play-state: paused;
+      .testimonial-quote {
+        font-size: clamp(1.1rem, 2vw, 1.35rem);
+        font-weight: 500;
+        line-height: 1.6;
+        color: var(--foreground);
+        max-width: 38rem;
+        margin: 0 auto;
       }
-      @keyframes testimonialsMarquee {
-        from { transform: translateX(0); }
-        to { transform: translateX(-50%); }
+      .testimonial-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        border: 1px solid var(--foreground);
+        background: transparent;
+        padding: 0;
+        cursor: pointer;
+        transition: background 0.25s ease;
+      }
+      .testimonial-dot.is-active {
+        background: var(--foreground);
       }
 
       @keyframes scrollDown {
@@ -497,8 +525,8 @@
         .tech-marquee-track.is-playing {
           animation: none;
         }
-        .testimonials-marquee-track.is-playing {
-          animation: none;
+        .testimonial-slide {
+          transition: none;
         }
       }
       @media (pointer: coarse) {

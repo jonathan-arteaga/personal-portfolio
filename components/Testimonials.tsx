@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 interface Testimonial {
   quote: string;
@@ -28,11 +28,21 @@ const testimonials: Testimonial[] = [
   },
 ];
 
-// Double the testimonials for seamless infinite scroll
-const duplicatedTestimonials = [...testimonials, ...testimonials];
+const ROTATE_INTERVAL = 5000;
 
 export const Testimonials: React.FC = () => {
-  const [isTestimonialsPlaying, setIsTestimonialsPlaying] = useState(true);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
+
+  const next = useCallback(() => {
+    setActiveIndex((prev) => (prev + 1) % testimonials.length);
+  }, []);
+
+  useEffect(() => {
+    if (!isPlaying) return;
+    const timer = setInterval(next, ROTATE_INTERVAL);
+    return () => clearInterval(timer);
+  }, [isPlaying, next]);
 
   return (
     <section className="w-full border-t border-b border-border surface-tier-2 section-shell overflow-hidden">
@@ -47,44 +57,48 @@ export const Testimonials: React.FC = () => {
           </div>
           <button
             type="button"
-            onClick={() => { setIsTestimonialsPlaying((prev) => !prev); }}
-            aria-pressed={isTestimonialsPlaying}
+            onClick={() => setIsPlaying((prev) => !prev)}
+            aria-pressed={isPlaying}
             className="focus-ring type-label text-muted hover:text-foreground transition-colors px-2 py-1 border border-border hover:border-foreground"
           >
-            {isTestimonialsPlaying ? 'Pause quotes' : 'Play quotes'}
+            {isPlaying ? 'Pause quotes' : 'Play quotes'}
           </button>
         </div>
       </div>
 
-      {/* Marquee Container */}
-      <div className="relative">
-        {/* Gradient Fade Left */}
-        <div className="absolute left-0 top-0 bottom-0 w-10 z-10 pointer-events-none" style={{ background: 'linear-gradient(to right, var(--surface-alt), transparent)' }}></div>
-
-        {/* Gradient Fade Right */}
-        <div className="absolute right-0 top-0 bottom-0 w-10 z-10 pointer-events-none" style={{ background: 'linear-gradient(to left, var(--surface-alt), transparent)' }}></div>
-
-        {/* Scrolling Track */}
-        <div
-          className={`testimonials-marquee-track${
-            isTestimonialsPlaying ? ' is-playing' : ''
-          }`}
-        >
-          {duplicatedTestimonials.map((testimonial, index) => (
+      {/* Quote Display */}
+      <div className="content-shell-wide">
+        <div className="testimonial-stage">
+          {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="flex-shrink-0 px-6 py-5 max-w-xl"
+              className={`testimonial-slide${index === activeIndex ? ' is-active' : ''}`}
+              aria-hidden={index !== activeIndex}
             >
-              {/* Quote Block */}
-              <div className="space-y-4">
-                <p className="type-body text-foreground" style={{ fontSize: 'clamp(1.15rem, 1.5vw, 1.35rem)', fontWeight: 500 }}>
-                  "{testimonial.quote}"
+              <blockquote className="space-y-4">
+                <p className="testimonial-quote">
+                  &ldquo;{testimonial.quote}&rdquo;
                 </p>
-                <p className="type-tag text-foreground" style={{ opacity: 0.7 }}>
-                  — {testimonial.author}
-                </p>
-              </div>
+                <footer className="type-label text-muted">
+                  {testimonial.author}
+                </footer>
+              </blockquote>
             </div>
+          ))}
+        </div>
+
+        {/* Dots */}
+        <div className="flex items-center justify-center gap-2 mt-6" role="tablist">
+          {testimonials.map((_, index) => (
+            <button
+              key={index}
+              type="button"
+              role="tab"
+              aria-selected={index === activeIndex}
+              aria-label={`Quote ${index + 1}`}
+              onClick={() => { setActiveIndex(index); setIsPlaying(false); }}
+              className={`testimonial-dot${index === activeIndex ? ' is-active' : ''}`}
+            />
           ))}
         </div>
       </div>
