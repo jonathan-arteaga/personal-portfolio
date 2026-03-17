@@ -48,6 +48,7 @@ export default tseslint.config(
         { prefer: 'type-imports', fixStyle: 'inline-type-imports' },
       ],
       '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/restrict-template-expressions': ['error', { allowNumber: true }],
     },
   },
   {
