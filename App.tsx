@@ -4,7 +4,9 @@ import { LenisProvider } from './contexts/LenisContext';
 import { Navigation } from './components/Navigation';
 import { Hero } from './components/Hero';
 import { BentoGrid } from './components/BentoGrid';
+import { DesignProcess } from './components/DesignProcess';
 import { Artifacts } from './components/Artifacts';
+import { Approach } from './components/Approach';
 import { Testimonials } from './components/Testimonials';
 import { Interests } from './components/Interests';
 import { Footer } from './components/Footer';
@@ -36,11 +38,17 @@ function App() {
           {/* Hero */}
           <Hero />
 
+          {/* How I Work - Design Process */}
+          <DesignProcess />
+
           {/* About & Journey - Bento Grid */}
           <BentoGrid />
 
           {/* Projects */}
           <Artifacts />
+
+          {/* Point of View - Approach / Philosophy */}
+          <Approach />
 
           {/* Testimonials - Social proof after seeing work */}
           <Testimonials />

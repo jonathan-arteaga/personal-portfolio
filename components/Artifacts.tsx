@@ -249,7 +249,7 @@ const projects: ProjectData[] = [
     id: 'sf-001',
     category: 'salesforce',
     title: 'Agent Dashboard',
-    description: 'Unified agent context to reduce training friction and speed up case resolution.',
+    description: 'Service agents were losing context switching between tools. Designed a unified workspace that reduced training time and sped up case resolution by giving agents everything they need in one view.',
     icon: <List className="w-4 h-4" />,
     tags: ['Service Cloud', 'Flows', 'Agentforce'],
     mockUI: <OrderManagementMock />,
@@ -258,7 +258,7 @@ const projects: ProjectData[] = [
     id: 'sf-002',
     category: 'salesforce',
     title: 'Service Console',
-    description: 'Custom console app for streamlined case management and faster agent workflows.',
+    description: 'Case management was fragmented across multiple screens. Designed and built a custom console that streamlined the agent workflow into a single, intuitive experience.',
     icon: <Building2 className="w-4 h-4" />,
     tags: ['Console', 'OmniStudio', 'LWC'],
     mockUI: <B2BStoreMock />,
@@ -267,7 +267,7 @@ const projects: ProjectData[] = [
     id: 'web-001',
     category: 'websites',
     title: 'Ecommerce Store',
-    description: 'Multi-region, multi-channel storefront with product variants and checkout flow.',
+    description: 'A growing brand needed to sell across regions and channels without operational complexity. Built a storefront that handles product variants, multi-currency, and checkout in one unified flow.',
     icon: <ShoppingCart className="w-4 h-4" />,
     tags: ['Commerce Cloud', 'React', 'Stripe'],
     mockUI: <EcommerceMock />,
@@ -276,7 +276,7 @@ const projects: ProjectData[] = [
     id: 'web-002',
     category: 'websites',
     title: 'Marketplace',
-    description: 'Multi-vendor marketplace with seller onboarding, listings, and order management.',
+    description: 'Designed a multi-vendor marketplace from seller onboarding through order fulfillment. The challenge: make it simple enough that non-technical vendors could self-serve.',
     icon: <Store className="w-4 h-4" />,
     tags: ['Next.js', 'Tailwind', 'Postgres'],
     mockUI: <MarketplaceMock />,
@@ -285,7 +285,7 @@ const projects: ProjectData[] = [
     id: 'proto-001',
     category: 'prototypes',
     title: 'Subscription Manager',
-    description: 'Handles subscription-based billing, renewal logic, and dunning management.',
+    description: 'Subscription businesses struggle with churn they can\'t see coming. Prototyped a billing and renewal system with proactive dunning management to reduce involuntary churn.',
     icon: <RefreshCw className="w-4 h-4" />,
     tags: ['Stripe', 'Node.js', 'React'],
     mockUI: <SubscriptionMock />,
@@ -294,7 +294,7 @@ const projects: ProjectData[] = [
     id: 'proto-002',
     category: 'prototypes',
     title: 'Mobile POS',
-    description: 'In-store point-of-sale with tap-to-pay, receipt generation, and inventory sync.',
+    description: 'Retail staff needed a payment solution that worked on the floor, not just behind a counter. Prototyped a mobile POS with tap-to-pay and real-time inventory sync.',
     icon: <Smartphone className="w-4 h-4" />,
     tags: ['React Native', 'Stripe Terminal'],
     mockUI: <POSMock />,
@@ -303,7 +303,7 @@ const projects: ProjectData[] = [
     id: 'ind-001',
     category: 'independent',
     title: 'AI Workflow Automation',
-    description: 'Custom tools that take messy manual processes and turn them into one-click workflows. Upload data, get structured output. No prompt engineering required by the end user.',
+    description: 'Small ops teams were spending hours on repetitive data processing. Designed and built tools that turn messy manual processes into one-click workflows. No prompt engineering required by the end user.',
     icon: <Zap className="w-4 h-4" />,
     tags: ['Claude', 'Python', 'Automation'],
     mockUI: <WorkflowAutomationMock />,
@@ -312,7 +312,7 @@ const projects: ProjectData[] = [
     id: 'ind-002',
     category: 'independent',
     title: 'Digital Operations Infrastructure',
-    description: 'Websites, analytics, lead routing, and reporting systems built from scratch for small teams. Everything connected, everything measured.',
+    description: 'Small businesses running on spreadsheets and guesswork. Built complete digital foundations: websites, analytics, lead routing, and reporting. Everything connected, everything measured.',
     icon: <BarChart3 className="w-4 h-4" />,
     tags: ['Next.js', 'Analytics', 'Integrations'],
     mockUI: <OperationsInfraMock />,
@@ -321,7 +321,7 @@ const projects: ProjectData[] = [
     id: 'ind-003',
     category: 'independent',
     title: 'Custom Web Applications',
-    description: 'Production apps built with Next.js, Tailwind, and modern tooling. Fast, responsive, designed for the people who actually use them.',
+    description: 'Production apps designed for the people who actually use them. Fast, responsive, and built with the same user-centered thinking I bring to enterprise solutions.',
     icon: <Code className="w-4 h-4" />,
     tags: ['Next.js', 'Tailwind', 'React'],
     mockUI: <WebAppMock />,
@@ -357,7 +357,7 @@ export const Artifacts: React.FC = () => {
             </span>
           </div>
           <span className="type-tag text-muted/50 border border-border px-2 py-0.5">
-            Demos &amp; Concepts
+            Solutions &amp; Prototypes
           </span>
         </div>
 

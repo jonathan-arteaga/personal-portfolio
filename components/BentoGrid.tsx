@@ -15,19 +15,19 @@ const timelineData: TimelineNode[] = [
     role: 'Lead Solutions Engineer',
     period: '2019 — Present',
     isCurrent: true,
-    description: 'Enterprise deals, technical strategy, and the demos that close them. Promoted 3x in 5 years.',
+    description: 'Design and deliver multi-cloud solution visions for enterprise accounts. Orchestrate 5-10+ specialist teams into a single, compelling narrative. Promoted 3x in 5 years.',
   },
   {
     company: 'Enterprise Admin',
     role: 'Salesforce Administrator',
     period: '2016 — 2019',
-    description: 'Ran Salesforce orgs end to end. Learned how businesses actually operate under the hood.',
+    description: 'Built and optimized Salesforce orgs end to end. Learned how businesses actually operate under the hood.',
   },
   {
     company: 'AT&T',
     role: 'B2B Sales Consultant',
     period: '2010 — 2017',
-    description: 'Sold technology to small businesses. Learned to listen first, solve second.',
+    description: 'Sold technology to small businesses. Learned to listen for the real problem before building the solution.',
   },
 ];
 
@@ -71,7 +71,7 @@ export const BentoGrid: React.FC = () => {
               Jonathan Arteaga
             </h3>
             <p className="type-tag text-muted mt-1">
-              Solutions Engineer & Builder
+              Lead Solutions Engineer
             </p>
           </div>
 
@@ -129,13 +129,13 @@ export const BentoGrid: React.FC = () => {
                 18
               </p>
               <p className="type-tag text-muted mt-1.5">
-                Years in Sales
+                Years Understanding Buyers
               </p>
             </div>
             <div className="w-full h-px bg-border my-5" />
             <div>
               <p className="type-heading leading-none text-foreground">
-                5
+                6
               </p>
               <p className="type-tag text-muted mt-1.5">
                 Years at Salesforce
@@ -165,7 +165,7 @@ export const BentoGrid: React.FC = () => {
               ))}
             </h2>
             <p className="type-body-sm text-muted">
-              I've spent 18 years learning what businesses need and how to build it. Sales taught me to listen. Engineering taught me to build. Now I do both, whether that's architecting an enterprise solution or building an AI tool that saves a small team 20 hours a week.
+              Sales taught me to listen for what people actually need. Engineering taught me to build it. Design thinking taught me to make sure it gets adopted. Now I bring all three together: understanding the problem, designing the vision, and building the solution that sticks.
             </p>
           </div>
 
@@ -179,7 +179,7 @@ export const BentoGrid: React.FC = () => {
               Focus
             </span>
             <p className="type-body font-medium text-foreground">
-              AI, Automation, Operations Technology
+              AI, Multi-Cloud Solutions, Design-Led Strategy
             </p>
           </div>
 
@@ -212,10 +212,10 @@ export const BentoGrid: React.FC = () => {
               </span>
             </div>
             <p className="type-body-sm opacity-90 mb-4">
-              I don't just talk about AI. I build with it. I've designed AI-powered workflow tools that cut manual work by 60-80% for small operations teams. I build custom web applications, automation systems, and analytics stacks using Claude, Next.js, and modern tooling.
+              I don't just talk about AI. I build with it and I help customers see what's possible with it. I've designed AI-powered workflow tools that cut manual work by 60-80%, and I build the prototypes and solution visions that help enterprise buyers understand what AI can do for their business.
             </p>
             <p className="type-body-sm opacity-90">
-              My approach: understand the actual workflow first, then build the simplest thing that solves the real problem.
+              My approach: understand the real workflow, co-create the vision with the stakeholders, then build the simplest thing that proves the value.
             </p>
           </div>
 

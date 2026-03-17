@@ -1,7 +1,7 @@
 export const SITE_URL = 'https://rteaga.com';
-export const SITE_TITLE = 'Jonathan Arteaga | Builder & Solutions Engineer';
+export const SITE_TITLE = 'Jonathan Arteaga | Solutions Engineer';
 export const SITE_DESCRIPTION =
-  'Personal site of Jonathan Arteaga. Eighteen years solving business problems with technology.';
+  'Personal site of Jonathan Arteaga. I translate complex business problems into solutions people actually adopt.';
 export const CONTACT_EMAIL = 'jonathan@rteaga.com';
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/arteagajonathan';
 export const GITHUB_URL = 'https://github.com/jonathan-arteaga';
@@ -18,6 +18,6 @@ export const SITE_CONFIG = {
   },
   profile: {
     name: 'Jonathan Arteaga',
-    jobTitle: 'Solutions Engineer & Builder',
+    jobTitle: 'Lead Solutions Engineer',
   },
 } as const;

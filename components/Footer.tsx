@@ -39,7 +39,7 @@ export const Footer: React.FC = () => {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
             }`}
           >
-            Got a problem? Let's solve it.
+            Got a challenge? Let's design the solution.
           </p>
 
           {/* Referral line */}
