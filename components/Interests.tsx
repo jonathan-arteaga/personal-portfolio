@@ -169,10 +169,6 @@ export const Interests: React.FC = () => {
               <div className="w-10 h-10 flex items-center justify-center interactive-accent-secondary">
                 {interests[4].icon}
               </div>
-              <span className="inline-flex items-center gap-1 type-tag font-semibold px-1.5 py-0.5 interactive-accent-primary">
-                <span className="w-1 h-1 bg-accent-dark rounded-full animate-pulse"></span>
-                Daily
-              </span>
             </div>
             <h3 className="type-title text-foreground mb-1">
               {interests[4].title}
