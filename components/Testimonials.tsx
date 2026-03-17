@@ -77,10 +77,10 @@ export const Testimonials: React.FC = () => {
             >
               {/* Quote Block */}
               <div className="space-y-4">
-                <p className="type-body text-foreground">
+                <p className="type-body text-foreground" style={{ fontSize: 'clamp(1.15rem, 1.5vw, 1.35rem)', fontWeight: 500 }}>
                   "{testimonial.quote}"
                 </p>
-                <p className="type-tag text-muted">
+                <p className="type-tag text-foreground" style={{ opacity: 0.7 }}>
                   — {testimonial.author}
                 </p>
               </div>
